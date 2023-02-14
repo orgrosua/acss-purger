@@ -7,7 +7,7 @@
  * Plugin Name:         Acss Purger
  * Plugin URI:          https://acss-purger.yabe.land
  * Description:         Purge Automatic.css CSS file
- * Version:             0.0.2-DEV
+ * Version:             0.0.3-DEV
  * Requires at least:   6.0
  * Requires PHP:        7.4
  * Author:              Rosua
