@@ -76,6 +76,10 @@ class Cache
     {
         $acss_plugin_info = get_plugin_data(ACSS_PLUGIN_FILE);
 
+        if (! file_exists(ACSS_DYNAMIC_CSS_DIR)) {
+            return;
+        }
+
         $finder = new Finder();
         $finder->files()->in(ACSS_DYNAMIC_CSS_DIR)->name('*.css');
 

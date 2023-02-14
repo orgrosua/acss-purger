@@ -86,6 +86,7 @@ return [
         // '',                            // Any namespace,
 
         'Yabe\AcssPurger',
+        'Automatic_CSS',
         'Bricks',
     ],
     'exclude-classes' => array_merge(

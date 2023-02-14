@@ -67,28 +67,32 @@ class Cache extends AbstractApi implements ApiInterface
             'purged' => [],
         ];
 
-        $finder = new Finder();
-        $finder->files()->in(ACSS_DYNAMIC_CSS_DIR)->name('*.css');
+        if (file_exists(ACSS_DYNAMIC_CSS_DIR)) {
+            $finder = new Finder();
+            $finder->files()->in(ACSS_DYNAMIC_CSS_DIR)->name('*.css');
 
-        foreach ($finder as $f) {
-            $files['original'][] = [
-                'name' => $f->getFilename(),
-                'size' => $f->getSize(),
-                'last_modified' => $f->getMTime(),
-                'file_url' => ACSS_DYNAMIC_CSS_URL . '/' . $f->getFilename(),
-            ];
+            foreach ($finder as $f) {
+                $files['original'][] = [
+                    'name' => $f->getFilename(),
+                    'size' => $f->getSize(),
+                    'last_modified' => $f->getMTime(),
+                    'file_url' => ACSS_DYNAMIC_CSS_URL . '/' . $f->getFilename(),
+                ];
+            }
         }
 
-        $finder = new Finder();
-        $finder->files()->in(CoreCache::get_cache_path())->name('*.css');
+        if (file_exists(CoreCache::get_cache_path())) {
+            $finder = new Finder();
+            $finder->files()->in(CoreCache::get_cache_path())->name('*.css');
 
-        foreach ($finder as $f) {
-            $files['purged'][] = [
-                'name' => $f->getFilename(),
-                'size' => $f->getSize(),
-                'last_modified' => $f->getMTime(),
-                'file_url' => CoreCache::get_cache_url($f->getFilename()),
-            ];
+            foreach ($finder as $f) {
+                $files['purged'][] = [
+                    'name' => $f->getFilename(),
+                    'size' => $f->getSize(),
+                    'last_modified' => $f->getMTime(),
+                    'file_url' => CoreCache::get_cache_url($f->getFilename()),
+                ];
+            }
         }
 
         if (wp_next_scheduled('a!yabe/acsspurger/core/cache:build_cache')) {
