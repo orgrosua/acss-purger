@@ -1,0 +1,121 @@
+# builds the content of http://github.com/orgrosua/acss-purger
+# inspiration from https://github.com/rectorphp/rector-src/blob/main/.github/workflows/build_scoped_rector.yaml
+name: Build release of Acss Purger
+
+on:
+  push:
+    # branches:
+    #   - main
+    tags:
+      - '*'
+
+env:
+  # see https://github.com/composer/composer/issues/9368#issuecomment-718112361
+  COMPOSER_ROOT_VERSION: "dev-main"
+
+jobs:
+  build_scoped_orgrosua:
+    # Don't run on forks.
+    if: github.repository == 'orgrosua/acss-purger-src'
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+        # sometime, when 2 or more consecutive PRs merged, the checkout orgrosua/acss-purger-src is overlapped
+        # and reverting other commit change
+        # this should not happen on create a tag, so wait first
+        # - name: "Wait before checkout orgrosua/acss-purger-src on create a tag"
+        #   if: "startsWith(github.ref, 'refs/tags/')"
+        #   run: sleep 120
+
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+
+        # clean up the dev files
+        - run: rm -rf ecs.php rector.php
+
+        # Use pnpm to install dependencies and build the assets.
+        - uses: pnpm/action-setup@v2
+          with:
+            version: 7
+        - uses: actions/setup-node@v3
+          with:
+            node-version: '16'
+            cache: 'pnpm'
+        - run: pnpm install
+        - run: pnpm build
+
+        # clean up the assets dev files
+        - run: rm -rf assets node_modules package.json pnpm-lock.yaml postcss.config.js tailwind.config.js webpack.config.js
+
+        # scoped using php-scoper.phar which require #[\ReturnTypeWillChange] inside so use php 8.0 for scoping
+        - uses: shivammathur/setup-php@v2
+          with:
+            php-version: 7.4
+            coverage: none
+          # fixes https://github.com/rectorphp/rector/pull/4559/checks?check_run_id=1359814403, see https://github.com/shivammathur/setup-php#composer-github-oauth
+          env:
+            COMPOSER_TOKEN: ${{ secrets.ORGROSUA_DEV_PAT }}
+
+        # install only prod dependencies
+        - run: composer install --no-dev --ansi
+
+        # copy files to $NESTED_DIRECTORY directory Exclude the scoped/nested directories to prevent rsync from copying in a loop
+        - run: rsync --exclude orgrosua-deploy -av * orgrosua-deploy --quiet
+
+        # prefix the namespaces
+        - run: sh deploy/deploy-scoped.sh orgrosua-deploy orgrosua-prefixed
+
+        # copy repository meta files
+        # - run: |
+        #     cp CHANGELOG.md orgrosua-prefixed/
+
+        # clone remote repository, so we can push it
+        - uses: "actions/checkout@v3"
+          with:
+            repository: orgrosua/acss-purger
+            ref: main
+            path: remote-repository
+            token: ${{ secrets.ORGROSUA_DEV_PAT }}
+
+        # remove remote files, to avoid piling up dead code in remote repository
+        - working-directory: remote-repository
+          run: |
+            git rm -rf .
+            git clean -fxd
+
+        # copy files to remote repository
+        - run: cp -a orgrosua-prefixed/. remote-repository
+
+        # setup git
+        - working-directory: remote-repository
+          run: |
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+
+        # commit metadata
+        - name: "Get Git log"
+          id: git-log
+          run: echo ::set-output name=log::$(git log ${{ github.event.before }}..${{ github.event.after }} --reverse --pretty='%H %s' | sed -e 's/^/https:\/\/github.com\/orgrosua\/acss-purger-src\/commit\//')
+
+        # publish it to remote repository without tag
+        - name: "Commit Prefixed - main"
+          working-directory: remote-repository
+          if: "!startsWith(github.ref, 'refs/tags/')"
+          run: |
+            git add --all
+            git commit -m "Updated Acss Purger to commit ${{ github.event.after }}" -m "${{ steps.git-log.outputs.log }}"
+            git push --quiet origin main
+
+        # publish it to remote repository with tag
+        - name: "Commit Prefixed - tag"
+          working-directory: remote-repository
+          if: "startsWith(github.ref, 'refs/tags/')"
+          run: |
+            git add --all
+            git commit -m "Acss Purger ${GITHUB_REF#refs/tags/}" -m "${{ steps.git-log.outputs.log }}"
+            git push --quiet origin main
+            git tag ${GITHUB_REF#refs/tags/} -m "${GITHUB_REF#refs/tags/}"
+            git push --quiet origin ${GITHUB_REF#refs/tags/}

@@ -1,0 +1,53 @@
+{
+    "name": "yabe/acss-purger-src",
+    "description": "Purge Automatic.css CSS file",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Yabe\\AcssPurger\\": "src/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "complete-check": [
+            "@check-rector",
+            "@check-ecs"
+        ],
+        "complete-tests": [
+            "@test-phpunit"
+        ],
+        "check-ecs": [
+            "vendor/bin/ecs check --ansi"
+        ],
+        "fix-ecs": [
+            "vendor/bin/ecs check --fix --ansi"
+        ],
+        "check-rector": [
+            "vendor/bin/rector process --dry-run"
+        ],
+        "fix-rector": [
+            "vendor/bin/rector process"
+        ],
+        "test-phpunit": [
+            "vendor/bin/phpunit tests"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "rector/rector": "^0.15",
+        "symplify/easy-coding-standard": "^11.1"
+    },
+    "require": {
+        "php": ">=7.4",
+        "rosua/edd-sl-plugin-updater": "@dev",
+        "sabberworm/php-css-parser": "^8.4",
+        "symfony/finder": "^5.4",
+        "symfony/property-access": "^5.4"
+    }
+}
