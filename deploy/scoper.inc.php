@@ -86,6 +86,7 @@ return [
         // '',                            // Any namespace,
 
         'Yabe\AcssPurger',
+        'Bricks',
     ],
     'exclude-classes' => array_merge(
         $wp_classes,
