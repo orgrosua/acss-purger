@@ -7,7 +7,7 @@
  * Plugin Name:         Acss Purger
  * Plugin URI:          https://acss-purger.yabe.land
  * Description:         Purge Automatic.css CSS file
- * Version:             0.0.3-DEV
+ * Version:             1.0.0-DEV
  * Requires at least:   6.0
  * Requires PHP:        7.4
  * Author:              Rosua
@@ -33,7 +33,7 @@ define('ACSS_PURGER_OPTION_NAMESPACE', 'acss_purger');
 
 define('ACSS_PURGER_EDD_STORE', [
     'url' => 'https://rosua.org',
-    'item_id' => 0000,
+    'item_id' => 238,
     'author' => 'idrosua',
 ]);
 
