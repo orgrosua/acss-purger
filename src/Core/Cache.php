@@ -163,7 +163,7 @@ class Cache
             $itemSelectors = $mItem->getSelectors();
             foreach ($mSelectors as $mSelector) {
                 foreach ($itemSelectors as $itemSelector) {
-                    if (strpos($itemSelector->getSelector(), $mSelector) !== false) {
+                    if (preg_match(sprintf('#%s(?![a-zA-Z0-9\_\-])#', $mSelector), $itemSelector->getSelector())) {
                         $mItem->removeSelector($itemSelector);
                     }
                 }
