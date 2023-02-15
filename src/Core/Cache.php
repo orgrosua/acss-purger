@@ -40,9 +40,14 @@ class Cache
         add_filter('cron_schedules', fn ($schedules) => $this->filter_cron_schedules($schedules));
 
         add_action('a!yabe/acsspurger/core/cache:build_cache', fn () => $this->build_cache());
+        add_action('a!yabe/acsspurger/core/cache:schedule_cache', static fn () => static::schedule_cache());
 
         // listen to Config change for cache build (async/scheduled)
-        add_action('f!yabe/acsspurger/api/setting/option:after_store', fn () => $this->schedule_cache(), 10, 1);
+        add_action('f!yabe/acsspurger/api/setting/option:after_store', static fn () => self::schedule_cache(), 10, 1);
+
+        add_action('a!yabe/acsspurger/plugins:deactivate_plugin_end', fn () => $this->drop_cache());
+
+        add_action('automaticcss_settings_after_save', static fn () => static::schedule_cache());
     }
 
     public function filter_cron_schedules($schedules)
@@ -55,10 +60,10 @@ class Cache
         return $schedules;
     }
 
-    public function schedule_cache()
+    public static function schedule_cache(int $delay = 10)
     {
         if (! wp_next_scheduled('a!yabe/acsspurger/core/cache:build_cache')) {
-            wp_schedule_single_event(time() + 10, 'a!yabe/acsspurger/core/cache:build_cache');
+            wp_schedule_single_event(time() + $delay, 'a!yabe/acsspurger/core/cache:build_cache');
         }
     }
 
@@ -111,6 +116,16 @@ class Cache
             } catch (\Throwable $throwable) {
                 Notice::error(sprintf('Failed to purge CSS: %s', $throwable->getMessage()));
             }
+        }
+    }
+
+    public function drop_cache()
+    {
+        $finder = new Finder();
+        $finder->files()->in(self::get_cache_path())->name('*.css');
+
+        foreach ($finder as $file) {
+            unlink($file->getRealPath());
         }
     }
 

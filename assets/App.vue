@@ -1,5 +1,5 @@
 <template>
-    <h1 class="wp-heading-inline">{{ __('Acss Purger', 'acss-purger') }}</h1>
+    <h1 class="wp-heading-inline">{{ __('ACSS Purger', 'acss-purger') }}</h1>
     <div class="acss-purger-top-menu tw-p-2">
         <a href="https://rosua.org" target="_blank">Rosua.org</a> |
         <a href="https://rosua.org/blog/" target="_blank">{{ __('News', 'acss-purger') }}</a> |

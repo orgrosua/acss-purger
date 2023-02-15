@@ -31,7 +31,7 @@ class AdminPage
 
     public function add_admin_menu()
     {
-        $hook = add_submenu_page('automatic-css', __('Acss Purger', 'acss-purger'), __('Acss Purger', 'acss-purger'), 'manage_options', ACSS_PURGER_OPTION_NAMESPACE, fn () => $this->render());
+        $hook = add_submenu_page('automatic-css', __('ACSS Purger', 'acss-purger'), __('ACSS Purger', 'acss-purger'), 'manage_options', ACSS_PURGER_OPTION_NAMESPACE, fn () => $this->render());
 
         add_action('load-' . $hook, fn () => $this->init_hooks());
     }
@@ -74,7 +74,7 @@ class AdminPage
     private function admin_footer_text($text): string
     {
         return sprintf(
-            __('Thank you for using <b>Acss Purger</b>! Join us on the <a href="%s" target="_blank">Facebook Group</a>.', 'acss-purger'),
+            __('Thank you for using <b>ACSS Purger</b>! Join us on the <a href="%s" target="_blank">Facebook Group</a>.', 'acss-purger'),
             'https://l.suabahasa.dev/YkV8t'
         );
     }

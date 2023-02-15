@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Yabe\AcssPurger\Builder;
 
 use WP_Query;
+use Yabe\AcssPurger\Core\Cache;
 
 /**
  * Oxygen Builder' worker integration
@@ -35,6 +36,15 @@ class Oxygen
             add_filter('f!yabe/acsspurger/core/cache:selectors', fn (array $selectors): array => $this->scan_contents($selectors), 10);
 
             add_filter('f!yabe/acsspurger/core/runtime:is_inside_editor', fn ($is) => $this->is_inside_editor($is));
+
+            add_action('update_post_meta', fn ($_1, $_2, $meta_key) => $this->schedule_purge($meta_key), 1_000_001, 3);
+        }
+    }
+
+    public function schedule_purge($meta_key)
+    {
+        if ($meta_key === 'ct_builder_json' || $meta_key === 'ct_builder_shortcodes') {
+            Cache::schedule_cache(20);
         }
     }
 

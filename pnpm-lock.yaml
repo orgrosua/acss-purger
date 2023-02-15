@@ -15,8 +15,8 @@ specifiers:
   '@wordpress/i18n': ^4.26.0
   autoprefixer: ^10.4.13
   awesome-notifications: ^3.1.3
-  axios: ^1.3.2
-  core-js: ^3.27.2
+  axios: ^1.3.3
+  core-js: ^3.28.0
   dayjs: ^1.11.7
   lodash-es: ^4.17.21
   nanoid: ^4.0.1
@@ -31,7 +31,7 @@ specifiers:
   primevue: ^3.23.0
   regenerator-runtime: ^0.13.11
   s-ago: ^2.2.0
-  sass: ^1.58.0
+  sass: ^1.58.1
   sass-loader: ^13.2.0
   slug: ^8.2.2
   tailwindcss: ^3.2.6
@@ -47,7 +47,7 @@ dependencies:
   '@floating-ui/vue': 0.1.0_vue@3.2.47
   '@wordpress/i18n': 4.26.0
   awesome-notifications: 3.1.3
-  axios: 1.3.2
+  axios: 1.3.3
   dayjs: 1.11.7
   lodash-es: 4.17.21
   nanoid: 4.0.1
@@ -64,12 +64,12 @@ devDependencies:
   '@headlessui/vue': 1.7.9_vue@3.2.47
   '@hotwired/stimulus': 3.2.1
   '@symfony/stimulus-bridge': 3.2.1_@hotwired+stimulus@3.2.1
-  '@symfony/webpack-encore': 4.2.0_stgmr7czmpoghp35iner55mpke
+  '@symfony/webpack-encore': 4.2.0_4h2ekzmrkbadai6lteplpp7pyu
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.6
   '@vue/compiler-sfc': 3.2.47
   '@wordpress/dom-ready': 3.26.0
   autoprefixer: 10.4.13_postcss@8.4.21
-  core-js: 3.27.2
+  core-js: 3.28.0
   postcss: 8.4.21
   postcss-advanced-variables: 3.0.1
   postcss-import: 15.1.0_postcss@8.4.21
@@ -78,8 +78,8 @@ devDependencies:
   primeicons: 6.0.1
   primevue: 3.23.0_lksi2hrxe57qe2yasjpvmju34y
   regenerator-runtime: 0.13.11
-  sass: 1.58.0
-  sass-loader: 13.2.0_sass@1.58.0+webpack@5.75.0
+  sass: 1.58.1
+  sass-loader: 13.2.0_sass@1.58.1+webpack@5.75.0
   tailwindcss: 3.2.6_postcss@8.4.21
   vue: 3.2.47
   vue-loader: 17.0.1_fsjtiqkk4imwn72zedmhnjvnrm
@@ -1174,7 +1174,7 @@ packages:
       babel-plugin-polyfill-corejs2: 0.3.3_@babel+core@7.20.12
       babel-plugin-polyfill-corejs3: 0.6.0_@babel+core@7.20.12
       babel-plugin-polyfill-regenerator: 0.4.1_@babel+core@7.20.12
-      core-js-compat: 3.27.2
+      core-js-compat: 3.28.0
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
@@ -1422,7 +1422,7 @@ packages:
       schema-utils: 3.1.1
     dev: true
 
-  /@symfony/webpack-encore/4.2.0_stgmr7czmpoghp35iner55mpke:
+  /@symfony/webpack-encore/4.2.0_4h2ekzmrkbadai6lteplpp7pyu:
     resolution: {integrity: sha512-m0ZGm7vZpmc9pVKE7YBppS1tb9bK8r0qzOvRI2uCK7UfXtzfV3VgXr0VdTAlfmC72vvLKI+s9YJpiesOFbR6Aw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -1532,8 +1532,8 @@ packages:
       postcss-loader: 7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
       pretty-error: 4.0.0
       resolve-url-loader: 5.0.0
-      sass: 1.58.0
-      sass-loader: 13.2.0_sass@1.58.0+webpack@5.75.0
+      sass: 1.58.1
+      sass-loader: 13.2.0_sass@1.58.1+webpack@5.75.0
       semver: 7.3.8
       style-loader: 3.3.1_webpack@5.75.0
       sync-rpc: 1.3.6
@@ -1626,12 +1626,12 @@ packages:
   /@types/eslint-scope/3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
-      '@types/eslint': 8.21.0
+      '@types/eslint': 8.21.1
       '@types/estree': 0.0.51
     dev: true
 
-  /@types/eslint/8.21.0:
-    resolution: {integrity: sha512-35EhHNOXgxnUgh4XCJsGhE7zdlDhYDN/aMG6UbkByCFFNgQ7b3U+uVoqBpicFydR8JEfgdjCF7SJ7MiJfzuiTA==}
+  /@types/eslint/8.21.1:
+    resolution: {integrity: sha512-rc9K8ZpVjNcLs8Fp0dkozd5Pt2Apk1glO4Vgz8ix1u6yFByxfqo5Yavpy65o+93TAe24jr7v+eSBtFLvOQtCRQ==}
     dependencies:
       '@types/estree': 0.0.51
       '@types/json-schema': 7.0.11
@@ -2188,7 +2188,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.5
-      caniuse-lite: 1.0.30001451
+      caniuse-lite: 1.0.30001452
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -2200,8 +2200,8 @@ packages:
     resolution: {integrity: sha512-bEm+52ePN9IQipu77YN/7Ia7hkSlZjLTra8/Y+vTfZUt+oB5jPA601akBi7uxJ8VghvpmuhwARUBQ2Iae3J8Sg==}
     dev: false
 
-  /axios/1.3.2:
-    resolution: {integrity: sha512-1M3O703bYqYuPhbHeya5bnhpYVsDDRyQSabNja04mZtboLNSuZ4YrltestrLXfHgmzua4TpUqRiVKbiQuo2epw==}
+  /axios/1.3.3:
+    resolution: {integrity: sha512-eYq77dYIFS77AQlhzEL937yUBSepBfPIe8FcgEDN35vMNZKMrs81pgnyrQpwfy4NF4b4XWX1Zgx7yX+25w8QJA==}
     dependencies:
       follow-redirects: 1.15.2
       form-data: 4.0.0
@@ -2245,7 +2245,7 @@ packages:
     dependencies:
       '@babel/core': 7.20.12
       '@babel/helper-define-polyfill-provider': 0.3.3_@babel+core@7.20.12
-      core-js-compat: 3.27.2
+      core-js-compat: 3.28.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2330,7 +2330,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001451
+      caniuse-lite: 1.0.30001452
       electron-to-chromium: 1.4.295
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10_browserslist@4.21.5
@@ -2376,13 +2376,13 @@ packages:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
     dependencies:
       browserslist: 4.21.5
-      caniuse-lite: 1.0.30001451
+      caniuse-lite: 1.0.30001452
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: true
 
-  /caniuse-lite/1.0.30001451:
-    resolution: {integrity: sha512-XY7UbUpGRatZzoRft//5xOa69/1iGJRBlrieH6QYrkKLIFn3m7OVEJ81dSrKoy2BnKsdbX5cLrOispZNYo9v2w==}
+  /caniuse-lite/1.0.30001452:
+    resolution: {integrity: sha512-Lkp0vFjMkBB3GTpLR8zk4NwW5EdRdnitwYJHDOOKIU85x4ckYCPQ+9WlVvSVClHxVReefkUMtWZH2l9KGlD51w==}
     dev: true
 
   /chalk/2.4.2:
@@ -2560,14 +2560,14 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /core-js-compat/3.27.2:
-    resolution: {integrity: sha512-welaYuF7ZtbYKGrIy7y3eb40d37rG1FvzEOfe7hSLd2iD6duMDqUhRfSvCGyC46HhR6Y8JXXdZ2lnRUMkPBpvg==}
+  /core-js-compat/3.28.0:
+    resolution: {integrity: sha512-myzPgE7QodMg4nnd3K1TDoES/nADRStM8Gpz0D6nhkwbmwEnE0ZGJgoWsvQ722FR8D7xS0n0LV556RcEicjTyg==}
     dependencies:
       browserslist: 4.21.5
     dev: true
 
-  /core-js/3.27.2:
-    resolution: {integrity: sha512-9ashVQskuh5AZEZ1JdQWp1GqSoC1e1G87MzRqg2gIfVAQ7Qn9K+uFj8EcniUFA4P2NLZfV+TOlX1SzoKfo+s7w==}
+  /core-js/3.28.0:
+    resolution: {integrity: sha512-GiZn9D4Z/rSYvTeg1ljAIsEqFm0LaN9gVtwDCrKL80zHtS31p9BAjmTxVqTQDMpwlMolJZOFntUG2uwyj7DAqw==}
     requiresBuild: true
     dev: true
 
@@ -4859,7 +4859,7 @@ packages:
   /safer-buffer/2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  /sass-loader/13.2.0_sass@1.58.0+webpack@5.75.0:
+  /sass-loader/13.2.0_sass@1.58.1+webpack@5.75.0:
     resolution: {integrity: sha512-JWEp48djQA4nbZxmgC02/Wh0eroSUutulROUusYJO9P9zltRbNN80JCBHqRGzjd4cmZCa/r88xgfkjGD0TXsHg==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
@@ -4880,12 +4880,12 @@ packages:
     dependencies:
       klona: 2.0.6
       neo-async: 2.6.2
-      sass: 1.58.0
+      sass: 1.58.1
       webpack: 5.75.0_webpack-cli@5.0.1
     dev: true
 
-  /sass/1.58.0:
-    resolution: {integrity: sha512-PiMJcP33DdKtZ/1jSjjqVIKihoDc6yWmYr9K/4r3fVVIEDAluD0q7XZiRKrNJcPK3qkLRF/79DND1H5q1LBjgg==}
+  /sass/1.58.1:
+    resolution: {integrity: sha512-bnINi6nPXbP1XNRaranMFEBZWUfdW/AF16Ql5+ypRxfTvCRTTKrLsMIakyDcayUt2t/RZotmL4kgJwNH5xO+bg==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -5562,7 +5562,7 @@ packages:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-cli: 5.0.1_uaydpeuxkjjcxdbyfgk36cjdxi
       webpack-dev-middleware: 5.3.3_webpack@5.75.0
-      ws: 8.12.0
+      ws: 8.12.1
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -5666,8 +5666,8 @@ packages:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
     dev: true
 
-  /ws/8.12.0:
-    resolution: {integrity: sha512-kU62emKIdKVeEIOIKVegvqpXMSTAMLJozpHZaJNDYqBjzlSYXQGviYwN1osDLJ9av68qHd4a2oSjd7yD4pacig==}
+  /ws/8.12.1:
+    resolution: {integrity: sha512-1qo+M9Ba+xNhPB+YTWUlK6M17brTut5EXbcBaMRN5pH5dFrXz7lzz1ChFSUq3bOUl8yEvSenhHmYUNJxFzdJew==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1

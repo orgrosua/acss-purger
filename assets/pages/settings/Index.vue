@@ -14,7 +14,6 @@
                 </tr>
             </tbody>
         </table>
-
     </div>
 
     <div class="tw-mb-6">
@@ -26,13 +25,14 @@
                     <th scope="row"> Purged CSS </th>
                     <td>
                         <div class="tw-flex tw-items-center tw-mb-2">
-                            <button type="button" @click="doGenerateCache" class="button button-secondary"> Re-purge </button>
+                            <button type="button" @click="doGenerateCache" :disabled="busy.isBusy" class="button button-secondary"> Purge </button>
+                            <span :class="{'tw-hidden': !busy.isBusy || !busy.hasTask('settings:generate-cache')}" class="spinner tw-visible"></span>
 
                             <template v-if="css_cache.pending_task">
                                 <svg class="tw-ml-3 tw-h-5 tw-w-5 tw-text-gray-400 tw-fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
                                     <path d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h10.8C285.6 480.1 256 427.5 256 368c0-27.2 6.2-53 17.2-76l-36-36 67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM96 75V64H288V75c0 19-5.6 37.4-16 53H112c-10.3-15.6-16-34-16-53zM576 368c0-79.5-64.5-144-144-144s-144 64.5-144 144s64.5 144 144 144s144-64.5 144-144zM432 288c8.8 0 16 7.2 16 16v48h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H432c-8.8 0-16-7.2-16-16V304c0-8.8 7.2-16 16-16z" />
                                 </svg>
-                                <span class="tw-text-gray-400 tw-pl-1">
+                                <span class="tw-text-gray-400 tw-pl-1" :title="new dayjs(css_cache.pending_task * 1000).format('YYYY-MM-DD HH:mm:ss')">
                                     There is a scheduled task to purge the CSS.
                                 </span>
                             </template>
@@ -44,8 +44,8 @@
                         <p>
                             <span class="tw-font-medium"> Files: </span>
                         </p>
-                        <div class="tw-grid tw-grid-cols-12 tw-gap-5 tw-mt-2">
-                            <div v-for="f in css_files" class="tw-col-span-4 tw-flex tw-border tw-border-solid tw-border-gray-200 tw-rounded-md tw-shadow-sm">
+                        <div class="tw-grid tw-grid-cols-12 tw-gap-8 tw-mt-2">
+                            <div v-for="f in css_files" class="tw-col-span-4 tw-flex tw-relative tw-border tw-border-solid tw-border-gray-200 tw-rounded-md tw-shadow-sm">
                                 <div class="tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-w-20 tw-bg-gray-50 tw-text-green-500 tw-text-sm tw-font-medium tw-rounded-l-md">
                                     <svg class="tw-h-5 tw-w-5 tw-flex-shrink-0 tw-self-center tw-text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd" d="M10 3a.75.75 0 01.75.75v10.638l3.96-4.158a.75.75 0 111.08 1.04l-5.25 5.5a.75.75 0 01-1.08 0l-5.25-5.5a.75.75 0 111.08-1.04l3.96 4.158V3.75A.75.75 0 0110 3z" clip-rule="evenodd" />
@@ -77,6 +77,12 @@
                                         </p>
                                     </div>
                                 </div>
+                                <div class="tw-absolute -tw-bottom-5 tw-left-2 tw-text-gray-500 tw-font-medium">
+                                    Last purged:
+                                    <span v-if="f.purged" class="tw-font-normal">
+                                        {{ new dayjs(f.purged.last_modified * 1000).format('YYYY-MM-DD HH:mm:ss') }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </td>
@@ -85,7 +91,7 @@
         </table>
     </div>
 
-    <button type="button" @click="doStore" v-ripple class="button button-primary">Save Changes</button>
+    <!-- <button type="button" @click="doStore" v-ripple class="button button-primary">Save Changes</button> -->
 </template>
 
 <script setup>

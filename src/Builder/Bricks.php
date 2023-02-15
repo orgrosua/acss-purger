@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace Yabe\AcssPurger\Builder;
 
+use Bricks\Helpers;
 use WP_Query;
+use Yabe\AcssPurger\Core\Cache;
 
 /**
  * Bricks Builder' worker integration
@@ -35,7 +37,22 @@ class Bricks
             add_filter('f!yabe/acsspurger/core/cache:selectors', fn (array $selectors): array => $this->scan_contents($selectors), 10);
 
             add_filter('f!yabe/acsspurger/core/runtime:is_inside_editor', fn ($is) => $this->is_inside_editor($is));
+
+            add_action('save_post', fn ($post_id, $post) => $this->schedule_purge($post_id, $post), 1_000_001, 2);
         }
+    }
+
+    public function schedule_purge($post_id, $post)
+    {
+        if (wp_is_post_revision($post)) {
+            return;
+        }
+
+        if (! Helpers::render_with_bricks($post_id)) {
+            return;
+        }
+
+        Cache::schedule_cache(20);
     }
 
     /**

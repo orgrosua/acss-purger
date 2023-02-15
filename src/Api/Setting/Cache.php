@@ -58,7 +58,7 @@ class Cache extends AbstractApi implements ApiInterface
     public function index(WP_REST_Request $wprestRequest): WP_REST_Response
     {
         $cache = [
-            'pending_task' => false,
+            'pending_task' => wp_next_scheduled('a!yabe/acsspurger/core/cache:build_cache'),
             'last_generated' => '',
         ];
 
@@ -93,10 +93,6 @@ class Cache extends AbstractApi implements ApiInterface
                     'file_url' => CoreCache::get_cache_url($f->getFilename()),
                 ];
             }
-        }
-
-        if (wp_next_scheduled('a!yabe/acsspurger/core/cache:build_cache')) {
-            $cache['pending_task'] = true;
         }
 
         return new WP_REST_Response([
