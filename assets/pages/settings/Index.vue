@@ -5,7 +5,7 @@
                 <tr>
                     <th scope="row"><label>License Key</label></th>
                     <td>
-                        <input name="license_key" type="text" v-model.lazy="license.key" class="tw-min-w-[25rem]">
+                        <input name="license_key" type="password" v-model.lazy="license.key" class="tw-min-w-[25rem]">
                         <div v-if="license.is_activated" class="tw-flex tw-my-2.5 tw-items-center tw-font-medium">
                             Status: <span class="tw-font-normal tw-text-white tw-bg-green-700 tw-px-1.5 tw-py-1 tw-rounded tw-ml-2.5">active</span>
                         </div>
