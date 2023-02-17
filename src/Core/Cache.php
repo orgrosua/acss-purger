@@ -17,10 +17,16 @@ use Automatic_CSS\Model\Config\Classes;
 use Sabberworm\CSS\CSSList\CSSList;
 use Sabberworm\CSS\CSSList\Document;
 use Sabberworm\CSS\Parser;
+use Sabberworm\CSS\Rule\Rule;
 use Sabberworm\CSS\RuleSet\DeclarationBlock;
+use Sabberworm\CSS\Value\CalcFunction;
+use Sabberworm\CSS\Value\CSSFunction;
+use Sabberworm\CSS\Value\RuleValueList;
+use Sabberworm\CSS\Value\Size;
 use Symfony\Component\Finder\Finder;
 use Yabe\AcssPurger\Plugin;
 use Yabe\AcssPurger\Utils\Common;
+use Yabe\AcssPurger\Utils\Config;
 use Yabe\AcssPurger\Utils\Notice;
 
 /**
@@ -92,6 +98,8 @@ class Cache
 
         $selectors = apply_filters('f!yabe/acsspurger/core/cache:selectors', []);
 
+        $selectors = array_merge($selectors, Config::get('cache.safelist', []));
+
         $classes = array_diff($classes, $selectors);
 
         $classes = array_map(static fn ($class) => sprintf('.%s', $class), $classes);
@@ -142,14 +150,16 @@ class Cache
 
         $css = $cssDocument->render();
 
-        // remove new lines
-        $css = preg_replace('#\n#', '', $css);
+        if (! defined('WP_DEBUG') || ! WP_DEBUG) {
+            // remove new lines
+            $css = preg_replace('#\n#', '', $css);
 
-        // remove tabs
-        $css = preg_replace('#\t#', '', $css);
+            // remove tabs
+            $css = preg_replace('#\t#', '', $css);
 
-        // remove multiple spaces
-        $css = preg_replace('#\s+#', ' ', $css);
+            // remove multiple spaces
+            $css = preg_replace('#\s+#', ' ', $css);
+        }
 
         return $css;
     }
@@ -186,6 +196,71 @@ class Cache
 
             if ($mItem->getSelectors() === []) {
                 $document->remove($mItem);
+            }
+
+            if (Config::get('cache.remove_fallback', false)) {
+                $mItem->getRules();
+
+                $rules = $mItem->getRules();
+
+                $rule_freq = array_count_values(array_map(static fn (Rule $rule) => $rule->getRule(), $rules));
+
+                $rule_freq = array_filter($rule_freq, static fn ($v) => $v > 1);
+
+                if ($rule_freq !== []) {
+                    foreach ($rule_freq as $k => $freq) {
+                        foreach ($rules as $rule) {
+                            if ($rule->getRule() === $k) {
+                                if ($rule->getValue() instanceof CSSFunction) {
+                                    /** @var CSSFunction $r */
+                                    $r = $rule->getValue();
+
+                                    if ($r->getName() === 'clamp') {
+                                        continue;
+                                    }
+                                }
+
+                                if ($rule->getValue() instanceof Size) {
+                                    $mItem->removeRule($rule);
+                                    continue;
+                                }
+
+                                if ($freq === 3 && $rule->getValue() instanceof CalcFunction) {
+                                    $mItem->removeRule($rule);
+                                    continue;
+                                }
+
+                                if ($rule->getValue() instanceof RuleValueList) {
+                                    /** @var RuleValueList $rList */
+                                    $rList = $rule->getValue();
+
+                                    $existCalc = false;
+                                    $existClamp = false;
+
+                                    foreach ($rList->getListComponents() as $rListItem) {
+                                        if ($rListItem instanceof CalcFunction) {
+                                            $existCalc = true;
+                                        }
+
+                                        if ($rListItem instanceof CSSFunction && $rListItem->getName() === 'clamp') {
+                                            $existClamp = true;
+                                        }
+                                    }
+
+                                    if (! $existCalc && ! $existClamp) {
+                                        $mItem->removeRule($rule);
+                                        continue;
+                                    }
+
+                                    if ($freq === 3 && ! $existClamp) {
+                                        $mItem->removeRule($rule);
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

@@ -12,6 +12,7 @@
     <WordpressNotice />
     <h2 class="nav-tab-wrapper">
         <router-link :to="{ name: 'settings' }" class="nav-tab" activeClass="nav-tab-active">Settings</router-link>
+        <router-link :to="{ name: 'ko-fi' }" class="nav-tab" activeClass="nav-tab-active">Ko-fi</router-link>
         <a class="nav-tab" href="https://acss-purger.yabe.land/docs" target="_blank">
             Docs
             <svg class="tw-w-[15px] tw-h-[15px]" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 100 100">

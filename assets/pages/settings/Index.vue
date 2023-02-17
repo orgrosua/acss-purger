@@ -26,7 +26,7 @@
                     <td>
                         <div class="tw-flex tw-items-center tw-mb-2">
                             <button type="button" @click="doGenerateCache" :disabled="busy.isBusy" class="button button-secondary"> Purge </button>
-                            <span :class="{'tw-hidden': !busy.isBusy || !busy.hasTask('settings:generate-cache')}" class="spinner tw-visible"></span>
+                            <span :class="{ 'tw-hidden': !busy.isBusy || !busy.hasTask('settings:generate-cache') }" class="spinner tw-visible"></span>
 
                             <template v-if="css_cache.pending_task">
                                 <svg class="tw-ml-3 tw-h-5 tw-w-5 tw-text-gray-400 tw-fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -44,7 +44,7 @@
                         <p>
                             <span class="tw-font-medium"> Files: </span>
                         </p>
-                        <div class="tw-grid tw-grid-cols-12 tw-gap-8 tw-mt-2">
+                        <div class="tw-grid tw-grid-cols-12 tw-gap-8 tw-mt-2 tw-mb-4">
                             <div v-for="f in css_files" class="tw-col-span-4 tw-flex tw-relative tw-border tw-border-solid tw-border-gray-200 tw-rounded-md tw-shadow-sm">
                                 <div class="tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-w-20 tw-bg-gray-50 tw-text-green-500 tw-text-sm tw-font-medium tw-rounded-l-md">
                                     <svg class="tw-h-5 tw-w-5 tw-flex-shrink-0 tw-self-center tw-text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -87,22 +87,50 @@
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <th scope="row"><label>Remove fallback <span class="tw-text-yellow-600">(experimental)</span></label></th>
+                    <td>
+                        <input id="remove-fallback" name="remove_fallback" type="checkbox" :checked="get(options, 'cache.remove_fallback', false)" :value="get(options, 'cache.remove_fallback', false)" @input="set(options, 'cache.remove_fallback', !options?.cache?.remove_fallback)">
+                        <label for="remove-fallback"> Only use <code>clamp</code>, or <code>calc</code> function </label>
+                        <p class="description">⚠️ <span class="tw-font-medium">Warning:</span> remove fallback like <code>calc</code> function or primitive value</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label>Safelist</label></th>
+                    <td>
+                        <VueTagsInput v-model="tag" :tags="safelist" :autocomplete-items="filteredTags" @tags-changed="newTags => safelist = newTags" :placeholder="'Add a classes'" />
+                        <p class="description"> Add classes name that should be excluded.</p>
+                        <p class="description tw-font-medium">
+                            Filter hooks: <span class="tw-font-normal">(programmatically for developers)</span>
+                        </p>
+                        <div>
+                            <highlightjs language="php" :code="filterHookExample" />
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 
-    <!-- <button type="button" @click="doStore" v-ripple class="button button-primary">Save Changes</button> -->
+    <div class="tw-flex tw-items-center">
+        <button type="button" @click="doStore" :disabled="busy.isBusy" v-ripple class="button button-primary">Save Changes</button>
+        <span :class="{ 'tw-hidden': !busy.isBusy || !busy.hasTask('settings:store-options') }" class="spinner tw-visible"></span>
+</div>
 </template>
 
 <script setup>
-import { ref, watch, onBeforeMount } from 'vue';
+import { ref, watch, onBeforeMount, computed } from 'vue';
 import dayjs from 'dayjs';
 import cloneDeep from 'lodash-es/cloneDeep';
 import prettyBytes from 'pretty-bytes';
+import set from 'lodash-es/set';
+import get from 'lodash-es/get';
 
 import { useApi } from '../../library/api';
 import { useNotifier } from '../../library/notifier';
 import { useBusy } from '../../stores/busy';
+
+import VueTagsInput from '@sipec/vue3-tags-input';
 
 const api = useApi();
 const busy = useBusy();
@@ -121,6 +149,17 @@ const css_cache = ref({
 const css_files = ref([]);
 
 const options = ref({});
+
+const availableTags = ref([]);
+const tag = ref('');
+const safelist = ref([]);
+
+const filteredTags = computed(() => {
+    let filtered = availableTags.value.filter((item) => {
+        return item.text.toLowerCase().indexOf(tag.value.toLowerCase()) !== -1;
+    });
+    return filtered;
+});
 
 onBeforeMount(() => {
     busy.add('settings:fetch-license');
@@ -191,6 +230,20 @@ onBeforeMount(() => {
         .then(response => response.data)
         .then(data => {
             options.value = cloneDeep(data.options);
+            availableTags.value = data.acss_classes.map((item) => {
+                return {
+                    text: item,
+                };
+            });
+
+            // set(options.value, 'cache.safelist', safe);
+
+            safelist.value = get(options.value, 'cache.safelist', []).map((item) => {
+                return {
+                    text: item,
+                    tiClasses: 'ti-valid'
+                };
+            });
         })
         .catch(function (error) {
             notifier.alert(error.message);
@@ -237,6 +290,16 @@ watch(
             });
     }
 );
+
+watch(safelist, (newVal, oldVal) => {
+    if (newVal === oldVal) {
+        return;
+    }
+
+    let safe = newVal.map((item) => item.text);
+
+    set(options.value, 'cache.safelist', safe);
+});
 
 function doStore() {
     busy.add('settings:store-options');
@@ -307,4 +370,54 @@ function doGenerateCache() {
             busy.remove('settings:generate-cache');
         });
 }
+
+const filterHookExample = `<?php
+
+add_filter('f!yabe/acsspurger/core/cache:selectors', fn (array $selectors): array => your_function_name_here($selectors), 10);
+
+function your_function_name_here(array $selectors): array
+{
+    $selectors[] = 'your-class-name';
+    return $selectors;
+}
+`;
+
 </script>
+
+<style lang="scss">
+.vue-tags-input {
+    max-width: none !important;
+}
+
+.ti-new-tag-input:focus {
+    box-shadow: none !important;
+}
+
+.ti-new-tag-input {
+    min-height: initial !important;
+    font-size: 14px !important;
+}
+
+.ti-tag,
+.ti-item.ti-selected-item {
+    background-color: #007cba !important;
+    color: #fff !important;
+}
+
+.ti-tags li {
+    padding: 5px 8px !important;
+    margin: 2px !important;
+}
+
+.ti-item {
+    padding: 2px 3px !important;
+}
+
+.ti-tag {
+    font-size: 14px !important;
+}
+
+.ti-tag span {
+    line-height: 14px !important;
+}
+</style>

@@ -6,7 +6,9 @@ specifiers:
   '@floating-ui/vue': ^0.1.0
   '@headlessui/tailwindcss': ^0.1.2
   '@headlessui/vue': ^1.7.9
+  '@highlightjs/vue-plugin': ^2.1.0
   '@hotwired/stimulus': ^3.2.1
+  '@sipec/vue3-tags-input': ^3.0.4
   '@symfony/stimulus-bridge': ^3.2.1
   '@symfony/webpack-encore': ^4.2.0
   '@tailwindcss/forms': ^0.5.3
@@ -18,6 +20,7 @@ specifiers:
   axios: ^1.3.3
   core-js: ^3.28.0
   dayjs: ^1.11.7
+  highlight.js: ^11.7.0
   lodash-es: ^4.17.21
   nanoid: ^4.0.1
   pinia: ^2.0.30
@@ -45,10 +48,13 @@ specifiers:
 
 dependencies:
   '@floating-ui/vue': 0.1.0_vue@3.2.47
+  '@highlightjs/vue-plugin': 2.1.0_jsvakxz56e7tk77soxhxnrhzhm
+  '@sipec/vue3-tags-input': 3.0.4_vue@3.2.47
   '@wordpress/i18n': 4.26.0
   awesome-notifications: 3.1.3
   axios: 1.3.3
   dayjs: 1.11.7
+  highlight.js: 11.7.0
   lodash-es: 4.17.21
   nanoid: 4.0.1
   pinia: 2.0.30_vue@3.2.47
@@ -1290,6 +1296,16 @@ packages:
       vue: 3.2.47
     dev: true
 
+  /@highlightjs/vue-plugin/2.1.0_jsvakxz56e7tk77soxhxnrhzhm:
+    resolution: {integrity: sha512-E+bmk4ncca+hBEYRV2a+1aIzIV0VSY/e5ArjpuSN9IO7wBJrzUE2u4ESCwrbQD7sAy+jWQjkV5qCCWgc+pu7CQ==}
+    peerDependencies:
+      highlight.js: ^11.0.1
+      vue: ^3
+    dependencies:
+      highlight.js: 11.7.0
+      vue: 3.2.47
+    dev: false
+
   /@hotwired/stimulus-webpack-helpers/1.0.1_@hotwired+stimulus@3.2.1:
     resolution: {integrity: sha512-wa/zupVG0eWxRYJjC1IiPBdt3Lruv0RqGN+/DTMmUWUyMAEB27KXmVY6a8YpUVTM7QwVuaLNGW4EqDgrS2upXQ==}
     peerDependencies:
@@ -1407,6 +1423,14 @@ packages:
   /@sinclair/typebox/0.25.21:
     resolution: {integrity: sha512-gFukHN4t8K4+wVC+ECqeqwzBDeFeTzBXroBTqE6vcWrQGbEUpHO7LYdG0f4xnvYq4VOEwITSlHlp0JBAIFMS/g==}
     dev: true
+
+  /@sipec/vue3-tags-input/3.0.4_vue@3.2.47:
+    resolution: {integrity: sha512-zE4OiFkWvlvvGT3FZQ9hRrvJW935VPW0fe4K03SxM5Q/UQZMqph763UHXTuyK1orWNQMTbDx9tKPLIMZTiDXLA==}
+    peerDependencies:
+      vue: 3.x
+    dependencies:
+      vue: 3.2.47
+    dev: false
 
   /@symfony/stimulus-bridge/3.2.1_@hotwired+stimulus@3.2.1:
     resolution: {integrity: sha512-eawmVu+tLVkiTz7ewkcsxFvaSZKxFWXmdWxIsxr2jIfQ64PSJg7PIcd7GsPMDxX8sLwg3LGxXfJv5bASL1es+A==}
@@ -3330,6 +3354,11 @@ packages:
   /hash-sum/2.0.0:
     resolution: {integrity: sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==}
     dev: true
+
+  /highlight.js/11.7.0:
+    resolution: {integrity: sha512-1rRqesRFhMO/PRF+G86evnyJkCgaZFOI+Z6kdj15TA18funfoqJXvgPCLSf0SWq3SRfg1j3HlDs8o4s3EGq1oQ==}
+    engines: {node: '>=12.0.0'}
+    dev: false
 
   /hpack.js/2.1.6:
     resolution: {integrity: sha512-zJxVehUdMGIKsRaNt7apO2Gqp0BdqW5yaiGHXXmbpvxgBYVZnAql+BJb4RO5ad2MgpbZKn5G6nMnegrH1FcNYQ==}

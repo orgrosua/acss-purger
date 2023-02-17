@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import NotFound from './pages/NotFound.vue';
 
 import SettingsIndex from './pages/settings/Index.vue';
+import Kofi from './pages/Ko-fi.vue';
 
 const router = createRouter({
     history: createWebHistory(`${acssPurger.web_history}#/`),
@@ -15,6 +16,11 @@ const router = createRouter({
             path: '/settings',
             name: 'settings',
             component: SettingsIndex,
+        },
+        {
+            path: '/ko-fi',
+            name: 'ko-fi',
+            component: Kofi,
         },
         { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
     ]

@@ -6,6 +6,7 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
+import 'highlight.js/styles/stackoverflow-light.css';
 import './styles/app.css';
 
 require('./bootstrap');
@@ -17,7 +18,12 @@ import { createPinia } from 'pinia';
 import App from './App.vue';
 import router from './router.js';
 
+import hljs from 'highlight.js/lib/core';
+import hljsPhpLang from 'highlight.js/lib/languages/php';
+import hljsVuePlugin from '@highlightjs/vue-plugin';
 import vRipple from './directives/ripple/ripple.js';
+
+hljs.registerLanguage('php', hljsPhpLang);
 
 const pinia = createPinia();
 const app = createApp(App);
@@ -29,7 +35,8 @@ app.config.globalProperties.acssPurger = window.acssPurger;
 
 app
     .use(pinia)
-    .use(router);
+    .use(router)
+    .use(hljsVuePlugin);
 
 app.directive('ripple', vRipple);
 
