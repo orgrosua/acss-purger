@@ -74,6 +74,10 @@ class Option extends AbstractApi implements ApiInterface
 
         $options = $payload['options'];
 
+        if (empty($options)) {
+            $options = (object) $options;
+        }
+
         $options = apply_filters('f!yabe/acsspurger/api/setting/option:store_options', $options);
 
         update_option(ACSS_PURGER_OPTION_NAMESPACE . '_options', json_encode($options, JSON_THROW_ON_ERROR));
