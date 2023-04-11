@@ -3,23 +3,6 @@
         <div class="tw-pr-5">
 
             <div class="tw-mb-6">
-                <table class="form-table" role="presentation">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><label>License Key</label></th>
-                            <td>
-                                <input name="license_key" type="password" v-model.lazy="license.key" class="tw-min-w-[25rem]">
-                                <div v-if="license.is_activated" class="tw-flex tw-my-2.5 tw-items-center tw-font-medium">
-                                    Status: <span class="tw-font-normal tw-text-white tw-bg-green-700 tw-px-1.5 tw-py-1 tw-rounded tw-ml-2.5">active</span>
-                                </div>
-                                <p v-else class="description">Enter your <a href="https://acss-purger.yabe.land/#pricing-plans" target="_blank">license key</a> receive the update of the latest version.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="tw-mb-6">
                 <h2 class="title">Performance</h2>
 
                 <table class="form-table" role="presentation">
@@ -128,7 +111,11 @@
         <div>
             <div class="tw-flex tw-flex-col yabe-webfont-banner">
                 <div class="inner-wrap">
-                    <a class="webfont-banner" target="_blank" rel="noopener noreferrer" href="https://webfont.yabe.land/?utm_medium=acss-purger-plugin" style="background-image: url(&quot;data:image/svg+xml;charset=utf-8,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20459%20459%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20.cls-1%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20fill%3A%20%23fef08a%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20.cls-2%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20fill%3A%20%23fef08a%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20.cls-3%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20fill%3A%20%23713f12%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%3C%2Fstyle%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Ctitle%3Eyabe-webfont-banner%3C%2Ftitle%3E%0A%20%20%20%20%3Crect%20class%3D%22cls-1%22%20width%3D%22459%22%20height%3D%22459%22%20%2F%3E%0A%20%20%20%20%3Cpath%20class%3D%22cls-2%22%20d%3D%22M144.9%2C379.68a6.21%2C6.21%2C0%2C0%2C1-.57-.49%2C19.06%2C19.06%2C0%2C0%2C0-2.8-2%2C11.73%2C11.73%2C0%2C0%2C1-1.79-1%2C60.76%2C60.76%2C0%2C0%2C0-58.9-39.53%2C86.13%2C86.13%2C0%2C0%2C0-11.22%2C1.53%2C54.56%2C54.56%2C0%2C0%2C0-14%2C5.1l-3.82%2C2.3a30.65%2C30.65%2C0%2C0%2C0-2-5.1%2C52.49%2C52.49%2C0%2C0%2C0-18.36-21.68%2C77.52%2C77.52%2C0%2C0%2C0%2C38-41.05c0-.26.26-.77.26-1s.25-.51.25-.77a66.1%2C66.1%2C0%2C0%2C0%2C3.06-10.2%2C74.47%2C74.47%2C0%2C0%2C0%2C1.28-7.9%2C74.61%2C74.61%2C0%2C0%2C0-1.53-24.74%2C102.43%2C102.43%2C0%2C0%2C0-4.08-12.49%2C77.64%2C77.64%2C0%2C0%2C0-16.07-24A59.74%2C59.74%2C0%2C0%2C0%2C46.67%2C191a68.93%2C68.93%2C0%2C0%2C0-10-6.89%2C79%2C79%2C0%2C0%2C0-25.24-9.18c-3.32-.51-6.89-.76-10.2-1%2C2.8-1%2C5.61-1.78%2C8.41-2.55A63.89%2C63.89%2C0%2C0%2C1%2C63.24%2C183.6a22%2C22%2C0%2C0%2C1%2C7.14%2C6.63c1.53%2C1.79%2C3.06%2C3.57%2C4.34%2C5.36a46.11%2C46.11%2C0%2C0%2C1%2C26%2C82.62%2C71.67%2C71.67%2C0%2C0%2C1%2C24.22%2C11%2C84%2C84%2C0%2C0%2C1%2C36.47-19.38%2C79.36%2C79.36%2C0%2C0%2C1%2C49.47%2C4.34%2C44.8%2C44.8%2C0%2C0%2C1%2C23.2-6.63c23.46.25%2C42.58%2C19.38%2C42.33%2C42.84v2.29a24.75%2C24.75%2C0%2C0%2C1%2C22.7%2C24.74%2C19.91%2C19.91%2C0%2C0%2C1-.77%2C5.61%2C76.42%2C76.42%2C0%2C0%2C1%2C83.38%2C58.9c.26%2C2%2C.77%2C4.08%2C1%2C6.12a69.75%2C69.75%2C0%2C0%2C1%2C39%2C47.94c.23%2C1%2C.44%2C2%2C.62%2C3.06H416.1a47.52%2C47.52%2C0%2C0%2C0-4.53-7.91%2C53%2C53%2C0%2C0%2C0-45.9-22.69%2C35.11%2C35.11%2C0%2C0%2C0-5.1.51A22.1%2C22.1%2C0%2C0%2C0%2C341.19%2C419a24.7%2C24.7%2C0%2C0%2C0-4.34.51%2C2.92%2C2.92%2C0%2C0%2C1-.65.2l-.47.1a3%2C3%2C0%2C0%2C0-.66.2%2C9.35%2C9.35%2C0%2C0%2C0-2.81%2C1c-.51-1.53-1-2.8-1.53-4.08-1-2-2-4.08-3.06-5.86l-2.29-3.83c-7.14-10.2-18.36-18.36-31.62-23.71a92.31%2C92.31%2C0%2C0%2C0-33.15-6.12h-4.34a92.83%2C92.83%2C0%2C0%2C0-15%2C1.78%2C90.42%2C90.42%2C0%2C0%2C0-22.44%2C8.16%2C63.09%2C63.09%2C0%2C0%2C0-13.52%2C9.18c-3.57-.51-7.14-1-11-1.27h-3.83a75.63%2C75.63%2C0%2C0%2C0-10.71.76l-7.65%2C1.53a21.62%2C21.62%2C0%2C0%2C0-3.82%2C1%2C60%2C60%2C0%2C0%2C0-11.73%2C4.85c0-.51-.26-1.28-.26-1.79a17%2C17%2C0%2C0%2C0-.51-3.57%2C30.21%2C30.21%2C0%2C0%2C0-1.27-4.59%2C19.6%2C19.6%2C0%2C0%2C0-1.79-4.08%2C33.5%2C33.5%2C0%2C0%2C0-6.88-8.92%2C5%2C5%2C0%2C0%2C0-.57-.49l-.39-.29ZM206%22%20%2F%3E%0A%20%20%20%20%3Cpath%20class%3D%22cls-3%22%20d%3D%22M0%2C173.91H1.27a65.76%2C65.76%2C0%2C0%2C1%2C10.2%2C1%2C73.24%2C73.24%2C0%2C0%2C1%2C25.25%2C9.18A68.29%2C68.29%2C0%2C0%2C1%2C46.66%2C191a61%2C61%2C0%2C0%2C1%2C5.87%2C5.61%2C73.31%2C73.31%2C0%2C0%2C1%2C16.06%2C24%2C71.24%2C71.24%2C0%2C0%2C1%2C4.08%2C12.49%2C73.55%2C73.55%2C0%2C0%2C1%2C1.53%2C24.74c-.25%2C2.55-.76%2C5.35-1.27%2C7.9a78.54%2C78.54%2C0%2C0%2C1-3.06%2C10.2c0%2C.26-.26.51-.26.77s-.25.76-.25%2C1c-7.14%2C17.59-20.4%2C32.64-38%2C41.05a52.42%2C52.42%2C0%2C0%2C1%2C18.36%2C21.68%2C29.81%2C29.81%2C0%2C0%2C1%2C2%2C5.1l3.83-2.3a61.4%2C61.4%2C0%2C0%2C1%2C14-5.1%2C57%2C57%2C0%2C0%2C1%2C11.22-1.53%2C60.79%2C60.79%2C0%2C0%2C1%2C58.91%2C39.53%2C10.51%2C10.51%2C0%2C0%2C1%2C1.78%2C1%2C11.32%2C11.32%2C0%2C0%2C1%2C2.81%2C2%2C6.6%2C6.6%2C0%2C0%2C1%2C1.53%2C1.27%2C33.39%2C33.39%2C0%2C0%2C1%2C6.88%2C8.93%2C27.37%2C27.37%2C0%2C0%2C1%2C1.79%2C4.08%2C30.21%2C30.21%2C0%2C0%2C1%2C1.27%2C4.59c.26%2C1.27.26%2C2.29.51%2C3.57a4.24%2C4.24%2C0%2C0%2C1%2C.26%2C1.78%2C59.38%2C59.38%2C0%2C0%2C1%2C11.73-4.84c1.27-.26%2C2.55-.77%2C3.82-1a39.88%2C39.88%2C0%2C0%2C1%2C7.65-1.53%2C70.61%2C70.61%2C0%2C0%2C1%2C10.71-.77h3.83a51.2%2C51.2%2C0%2C0%2C1%2C11%2C1.28%2C83.42%2C83.42%2C0%2C0%2C1%2C13.52-9.18%2C86.54%2C86.54%2C0%2C0%2C1%2C22.44-8.16%2C97.5%2C97.5%2C0%2C0%2C1%2C15-1.79h4.34a92.48%2C92.48%2C0%2C0%2C1%2C33.15%2C6.12c13.51%2C5.36%2C24.48%2C13.52%2C31.62%2C23.72l2.29%2C3.82a31.74%2C31.74%2C0%2C0%2C1%2C3.06%2C5.87c.51%2C1.27%2C1%2C2.8%2C1.54%2C4.08a12%2C12%2C0%2C0%2C1%2C2.8-1%2C2.55%2C2.55%2C0%2C0%2C1%2C.66-.21l.47-.1a3.18%2C3.18%2C0%2C0%2C0%2C.66-.2%2C27.79%2C27.79%2C0%2C0%2C1%2C4.33-.51%2C22.72%2C22.72%2C0%2C0%2C1%2C19.38%2C9.94%2C35.39%2C35.39%2C0%2C0%2C1%2C5.1-.51%2C52.47%2C52.47%2C0%2C0%2C1%2C45.9%2C22.7%2C49.63%2C49.63%2C0%2C0%2C1%2C4.62%2C7.9H0V173.91Z%22%20%2F%3E%0A%3C%2Fsvg%3E&quot;);"></a>
+                    <a class="webfont-banner-hero  bg:#fef08a fg:#1d2327 box-shadow:none rt:7 mb:-4" target="_blank" rel="noopener noreferrer" href="https://webfont.yabe.land/?utm_medium=yabe-bricks-plugin&amp;ref=1"> <svg xmlns="http://www.w3.org/2000/svg" class="h:180 w:180" data-name="Layer 1" viewBox="0 0 459 459">
+                            <path d="M0 0h459v459H0z" style="fill:#fef08a"></path>
+                            <path d="M144.9 379.68a6.21 6.21 0 0 1-.57-.49 19.06 19.06 0 0 0-2.8-2 11.73 11.73 0 0 1-1.79-1 60.76 60.76 0 0 0-58.9-39.53 86.13 86.13 0 0 0-11.22 1.53 54.56 54.56 0 0 0-14 5.1l-3.82 2.3a30.65 30.65 0 0 0-2-5.1 52.49 52.49 0 0 0-18.36-21.68 77.52 77.52 0 0 0 38-41.05c0-.26.26-.77.26-1s.25-.51.25-.77a66.1 66.1 0 0 0 3.06-10.2 74.47 74.47 0 0 0 1.28-7.9 74.61 74.61 0 0 0-1.53-24.74 102.43 102.43 0 0 0-4.08-12.49 77.64 77.64 0 0 0-16.07-24 59.74 59.74 0 0 0-5.94-5.66 68.93 68.93 0 0 0-10-6.89 79 79 0 0 0-25.24-9.18c-3.32-.51-6.89-.76-10.2-1 2.8-1 5.61-1.78 8.41-2.55a63.89 63.89 0 0 1 53.6 12.22 22 22 0 0 1 7.14 6.63c1.53 1.79 3.06 3.57 4.34 5.36a46.11 46.11 0 0 1 26 82.62 71.67 71.67 0 0 1 24.22 11 84 84 0 0 1 36.47-19.38 79.36 79.36 0 0 1 49.47 4.34 44.8 44.8 0 0 1 23.2-6.63c23.46.25 42.58 19.38 42.33 42.84v2.29a24.75 24.75 0 0 1 22.7 24.74 19.91 19.91 0 0 1-.77 5.61 76.42 76.42 0 0 1 83.38 58.9c.26 2 .77 4.08 1 6.12a69.75 69.75 0 0 1 39 47.94c.23 1 .44 2 .62 3.06h-6.24a47.52 47.52 0 0 0-4.53-7.91 53 53 0 0 0-45.9-22.69 35.11 35.11 0 0 0-5.1.51 22.1 22.1 0 0 0-19.38-9.95 24.7 24.7 0 0 0-4.34.51 2.92 2.92 0 0 1-.65.2l-.47.1a3 3 0 0 0-.66.2 9.35 9.35 0 0 0-2.81 1c-.51-1.53-1-2.8-1.53-4.08-1-2-2-4.08-3.06-5.86l-2.29-3.83c-7.14-10.2-18.36-18.36-31.62-23.71a92.31 92.31 0 0 0-33.15-6.12h-4.34a92.83 92.83 0 0 0-15 1.78 90.42 90.42 0 0 0-22.44 8.16 63.09 63.09 0 0 0-13.52 9.18c-3.57-.51-7.14-1-11-1.27h-3.83a75.63 75.63 0 0 0-10.71.76l-7.65 1.53a21.62 21.62 0 0 0-3.82 1 60 60 0 0 0-11.73 4.85c0-.51-.26-1.28-.26-1.79a17 17 0 0 0-.51-3.57 30.21 30.21 0 0 0-1.27-4.59 19.6 19.6 0 0 0-1.79-4.08 33.5 33.5 0 0 0-6.88-8.92 5 5 0 0 0-.57-.49l-.39-.29Z" style="fill:#fef08a"></path>
+                            <path d="M0 173.91h1.27a65.76 65.76 0 0 1 10.2 1 73.24 73.24 0 0 1 25.25 9.18 68.29 68.29 0 0 1 9.94 6.91 61 61 0 0 1 5.87 5.61 73.31 73.31 0 0 1 16.06 24 71.24 71.24 0 0 1 4.08 12.49 73.55 73.55 0 0 1 1.53 24.74c-.25 2.55-.76 5.35-1.27 7.9a78.54 78.54 0 0 1-3.06 10.2c0 .26-.26.51-.26.77s-.25.76-.25 1c-7.14 17.59-20.4 32.64-38 41.05a52.42 52.42 0 0 1 18.36 21.68 29.81 29.81 0 0 1 2 5.1l3.83-2.3a61.4 61.4 0 0 1 14-5.1 57 57 0 0 1 11.22-1.53 60.79 60.79 0 0 1 58.91 39.53 10.51 10.51 0 0 1 1.78 1 11.32 11.32 0 0 1 2.81 2 6.6 6.6 0 0 1 1.53 1.27 33.39 33.39 0 0 1 6.88 8.93 27.37 27.37 0 0 1 1.79 4.08 30.21 30.21 0 0 1 1.27 4.59c.26 1.27.26 2.29.51 3.57a4.24 4.24 0 0 1 .26 1.78 59.38 59.38 0 0 1 11.73-4.84c1.27-.26 2.55-.77 3.82-1a39.88 39.88 0 0 1 7.65-1.53 70.61 70.61 0 0 1 10.71-.77h3.83a51.2 51.2 0 0 1 11 1.28 83.42 83.42 0 0 1 13.52-9.18 86.54 86.54 0 0 1 22.44-8.16 97.5 97.5 0 0 1 15-1.79h4.34a92.48 92.48 0 0 1 33.15 6.12c13.51 5.36 24.48 13.52 31.62 23.72l2.29 3.82a31.74 31.74 0 0 1 3.06 5.87c.51 1.27 1 2.8 1.54 4.08a12 12 0 0 1 2.8-1 2.55 2.55 0 0 1 .66-.21l.47-.1a3.18 3.18 0 0 0 .66-.2 27.79 27.79 0 0 1 4.33-.51 22.72 22.72 0 0 1 19.38 9.94 35.39 35.39 0 0 1 5.1-.51 52.47 52.47 0 0 1 45.9 22.7 49.63 49.63 0 0 1 4.62 7.9H0V173.91Z" style="fill:#713f12"></path>
+                        </svg> </a>
                     <div class="webfont-upgrade-details">
                         <h1 class="tw-font-bold">Yabe Webfont</h1>
                         <h3>Custom fonts management and self-host Google Fonts with seamless WordPress page builders integration</h3>
@@ -145,7 +132,10 @@
                     </div>
                     <div class="webfont-discount block tw-pb-0">
                         <h2>Get up to 50% off lifetime-update deal with coupon code: <code>ACSS-PURGER-WEBFONT</code>!</h2>
-                        <h3><a href="https://webfont.yabe.land/?utm_medium=acss-purger-plugin">Get the discount</a></h3>
+                        <h3 class="tw-relative tw-mt-[2.25rem]">
+                            <canvas ref="birdRiveCanvas" class="bird-rive-canvas"></canvas>
+                            <a @mouseenter="$event => yabeWebfontHovered = true" @mouseleave="$event => yabeWebfontHovered = false" href="https://webfont.yabe.land/?utm_medium=acss-purger-plugin">Get the discount</a>
+                        </h3>
                         <p class="discount-applied">* Discount available for limited time.</p>
                     </div>
                     <div class="block testimonial">
@@ -164,7 +154,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onBeforeMount, onMounted, computed } from 'vue';
+import { ref, watch, onBeforeMount, onBeforeUnmount, onMounted, computed } from 'vue';
 import dayjs from 'dayjs';
 import cloneDeep from 'lodash-es/cloneDeep';
 import prettyBytes from 'pretty-bytes';
@@ -176,6 +166,15 @@ import { useNotifier } from '../../library/notifier';
 import { useBusy } from '../../stores/busy';
 
 import VueTagsInput from '@sipec/vue3-tags-input';
+
+import { Rive, Layout, Alignment, Fit, Bounds } from '@rive-app/canvas';
+import { assetPath } from '../../library/assetsHelper.js';
+import birdRiveFile from '../../rive/bird.riv';
+
+const confetti = require('canvas-confetti');
+
+console.log(confetti);
+
 
 const api = useApi();
 const busy = useBusy();
@@ -207,22 +206,6 @@ const filteredTags = computed(() => {
 });
 
 onBeforeMount(() => {
-    busy.add('settings:fetch-license');
-    api
-        .request({
-            method: 'GET',
-            url: '/setting/license/index'
-        })
-        .then(response => response.data)
-        .then(data => {
-            license.value = data.license;
-        })
-        .catch(function (error) {
-            notifier.alert(error.message);
-        })
-        .finally(() => {
-            busy.remove('settings:fetch-license');
-        });
 
     busy.add('settings:fetch-cache');
     api
@@ -298,43 +281,6 @@ onBeforeMount(() => {
         });
 });
 
-watch(
-    () => license.value.key,
-    async (newKey, oldKey) => {
-        if (newKey === oldKey) {
-            return;
-        }
-
-        busy.add('settings:store-license');
-        api
-            .request({
-                method: 'POST',
-                url: '/setting/license/store',
-                data: {
-                    license: newKey
-                },
-            })
-            .then(response => response.data)
-            .then(data => {
-                license.value = cloneDeep(data.license);
-                if (Object.keys(data.notice).length > 0) {
-                    if (data.notice?.success) {
-                        notifier.success(data.notice?.success);
-                    } else if (data.notice?.error) {
-                        notifier.alert(data.notice?.error);
-                    }
-                } else {
-                    notifier.success('License setting saved.');
-                }
-            })
-            .catch(function (error) {
-                notifier.alert(error.message);
-            })
-            .finally(() => {
-                busy.remove('settings:store-license');
-            });
-    }
-);
 
 watch(safelist, (newVal, oldVal) => {
     if (newVal === oldVal) {
@@ -368,6 +314,42 @@ function doStore() {
             busy.remove('settings:store-options');
         });
 }
+
+const hooray = () => {
+    var count = 200;
+    var defaults = {
+        origin: { y: 0.7 }
+    };
+
+    function fire(particleRatio, opts) {
+        confetti.default(Object.assign({}, defaults, opts, {
+            particleCount: Math.floor(count * particleRatio)
+        }));
+    }
+
+    fire(0.25, {
+        spread: 26,
+        startVelocity: 55,
+    });
+    fire(0.2, {
+        spread: 60,
+    });
+    fire(0.35, {
+        spread: 100,
+        decay: 0.91,
+        scalar: 0.8
+    });
+    fire(0.1, {
+        spread: 120,
+        startVelocity: 25,
+        decay: 0.92,
+        scalar: 1.2
+    });
+    fire(0.1, {
+        spread: 120,
+        startVelocity: 45,
+    });
+};
 
 function doGenerateCache() {
     busy.add('settings:generate-cache');
@@ -407,6 +389,8 @@ function doGenerateCache() {
             });
             css_files.value = files;
             notifier.success('CSS file purged.');
+            // confetti.default();
+            hooray();
         })
         .catch(function (error) {
             notifier.alert(error.message);
@@ -464,10 +448,49 @@ const testimonial = computed(() => {
     return testimonials[rotateTestimonialsIndex.value];
 });
 
+const birdRiveCanvas = ref(null);
+
+/** @type {Rive} */
+let birdRive = null;
+const yabeWebfontHovered = ref(false);
+
+onMounted(() => {
+    birdRive = new Rive({
+        src: assetPath(birdRiveFile),
+        canvas: birdRiveCanvas.value,
+        autoplay: true,
+        stateMachines: 'State Machine 1',
+        onLoad: () => {
+            birdRive.resizeDrawingSurfaceToCanvas();
+        },
+        layout: new Layout({
+            fit: Fit.Contain,
+            alignment: Alignment.TopLeft,
+        }),
+    });
+
+    window.birdRive = birdRive;
+});
+
+watch(yabeWebfontHovered, (value) => {
+});
+
+onBeforeUnmount(() => {
+    birdRive.cleanup();
+});
 
 </script>
 
 <style lang="scss">
+.bird-rive-canvas {
+    height: 100px;
+    width: 100px !important;
+    top: -30px;
+    left: -10px;
+    z-index: 5;
+    position: absolute;
+}
+
 .vue-tags-input {
     max-width: none !important;
 }
@@ -516,15 +539,19 @@ const testimonial = computed(() => {
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
 }
 
-.yabe-webfont-banner .webfont-banner {
-    display: block;
-    background-color: #fef08a;
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    padding-bottom: 180px;
+.yabe-webfont-banner .webfont-banner-hero {
+    border-top-left-radius: 0.4375rem;
+    border-top-right-radius: 0.4375rem;
+    margin-bottom: -0.25rem;
     box-shadow: none;
-    border-radius: 7px 7px 0 0;
-    color: #1d2327;
+    color: rgb(29, 35, 39);
+    background-color: rgb(254, 240, 138);
+    display: block;
+}
+
+.yabe-webfont-banner .webfont-banner-hero svg {
+    height: 11.25rem;
+    width: 11.25rem;
 }
 
 .yabe-webfont-banner .webfont-upgrade-details {
@@ -596,7 +623,8 @@ const testimonial = computed(() => {
     box-shadow: 0 2px 0 0 #0d51c1;
     border-radius: 4px;
     margin: 0 auto;
-    padding: .9rem 0 .8rem;
+    width: fit-content;
+    padding: .9rem 1.5rem .8rem;
     text-align: center;
     text-transform: uppercase;
     font-size: 14px;

@@ -73,9 +73,6 @@ class AdminPage
 
     private function admin_footer_text($text): string
     {
-        return sprintf(
-            __('Thank you for using <b>ACSS Purger</b>! Join us on the <a href="%s" target="_blank">Facebook Group</a>.', 'acss-purger'),
-            'https://l.suabahasa.dev/YkV8t'
-        );
+        return 'Thank you for using <b>ACSS Purger</b>! Join us on the <a href="https://l.suabahasa.dev/YkV8t" target="_blank">Facebook Group</a>.';
     }
 }

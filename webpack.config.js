@@ -97,6 +97,20 @@ Encore
             target: 'http://127.0.0.1:80',
         };
     })
+
+    // handle rive.app files
+    .addRule({
+        test: /\.riv$/i,
+        type: 'asset/resource',
+        generator: {
+            filename: 'rive/[name].[hash:8][ext]',
+        },
+        parser: {
+            dataUrlCondition: {
+                maxSize: null,
+            },
+        },
+    })
     ;
 
 module.exports = Encore.getWebpackConfig();

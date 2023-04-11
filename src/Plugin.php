@@ -31,12 +31,12 @@ final class Plugin
     /**
      * @var string
      */
-    public const VERSION = '1.0.3';
+    public const VERSION = '1.0.4';
 
     /**
      * @var int
      */
-    public const VERSION_ID = 10003;
+    public const VERSION_ID = 10004;
 
     /**
      * @var int
@@ -51,7 +51,7 @@ final class Plugin
     /**
      * @var int
      */
-    public const RELEASE_VERSION = 3;
+    public const RELEASE_VERSION = 4;
 
     /**
      * @var string
@@ -104,9 +104,10 @@ final class Plugin
     public static function get_instance(): self
     {
         $cls = static::class;
-        if (! isset(self::$instance)) {
+        if (!isset(self::$instance)) {
             self::$instance = new self();
         }
+        
         return self::$instance;
     }
 
@@ -154,7 +155,7 @@ final class Plugin
         new Runtime();
         new ApiRouter();
 
-        $this->maybe_update_plugin();
+        // $this->maybe_update_plugin();
 
         // admin hooks.
         if (is_admin()) {
@@ -217,9 +218,9 @@ final class Plugin
                 foreach ($messages as $message) {
                     echo sprintf(
                         '<div class="notice notice-%s is-dismissible %s">%s</div>',
-                        $message['status'],
+                        esc_attr($message['status']),
                         ACSS_PURGER_OPTION_NAMESPACE,
-                        $message['message']
+                        esc_html($message['message'])
                     );
                 }
             }
