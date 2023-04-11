@@ -182,7 +182,6 @@ class Cache
                         $document->remove($mItem);
                     }
                 }
-                
                 continue;
             }
 

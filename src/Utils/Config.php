@@ -38,7 +38,6 @@ class Config
                 ->enableExceptionOnInvalidIndex()
                 ->getPropertyAccessor();
         }
-        
         return self::$propertyAccessor;
     }
 

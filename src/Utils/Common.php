@@ -45,7 +45,7 @@ class Common
             case 'xml':
                 return wp_is_xml_request();
             case 'frontend':
-                return (!is_admin() || wp_doing_ajax()) && !wp_doing_cron();
+                return (! is_admin() || wp_doing_ajax()) && ! wp_doing_cron();
             default:
                 return false;
         }
@@ -60,7 +60,7 @@ class Common
      */
     public static function save_file($content, $file_path): void
     {
-        if (!file_exists($file_path)) {
+        if (! file_exists($file_path)) {
             wp_mkdir_p(dirname($file_path));
         }
 
@@ -87,13 +87,13 @@ class Common
      */
     public static function plugin_data(?string $key = null)
     {
-        if (!function_exists('get_plugin_data')) {
+        if (! function_exists('get_plugin_data')) {
             require_once(ABSPATH . 'wp-admin/includes/plugin.php');
         }
 
         $plugin_data = wp_cache_get('plugin_data', ACSS_PURGER_OPTION_NAMESPACE);
 
-        if (!$plugin_data) {
+        if (! $plugin_data) {
             $plugin_data = get_plugin_data(ACSS_PURGER_FILE);
             wp_cache_set('plugin_data', $plugin_data, ACSS_PURGER_OPTION_NAMESPACE);
         }
@@ -109,7 +109,7 @@ class Common
      */
     public static function redirect(string $location, bool $safe = false)
     {
-        if (!headers_sent()) {
+        if (! headers_sent()) {
             if ($safe) {
                 wp_safe_redirect($location);
             } else {
@@ -118,7 +118,6 @@ class Common
         } else {
             echo '<meta http-equiv="refresh" content="0;url=' . esc_url($location) . '">';
         }
-        
         exit;
     }
 }

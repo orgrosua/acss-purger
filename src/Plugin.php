@@ -104,10 +104,9 @@ final class Plugin
     public static function get_instance(): self
     {
         $cls = static::class;
-        if (!isset(self::$instance)) {
+        if (! isset(self::$instance)) {
             self::$instance = new self();
         }
-        
         return self::$instance;
     }
 
