@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: automaticcss, automatic css, automatic-css, acss, acsspurger, acss purger, acss-purger
 Requires at least: 6.0
 Tested up to: 6.2
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -22,7 +22,7 @@ Up to 90% smaller CSS file size!
 - Or rate us on [WordPress](https://wordpress.org/support/plugin/acss-purger/reviews/?filter=5/#new-post/) :)
 
 = Credits =
-- [Image by brgfx](https://www.freepik.com/free-vector/blue-funnel-sticker-white-background_18935987.htm#query=funnel&position=1&from_view=search&track=sph) on Freepik
+- Image by [brgfx](https://www.freepik.com/free-vector/blue-funnel-sticker-white-background_18935987.htm#query=funnel&position=1&from_view=search&track=sph) on Freepik
 
 == Frequently Asked Questions ==
 
@@ -58,7 +58,7 @@ You can add the classes to the safelist. The safelist is a list of classes that 
 
 == Changelog ==
 
-= 1.0.7 =
+= 1.0.8 =
 * **New**: WordPress.org readme and assets update
 
 = 1.0.6 =
