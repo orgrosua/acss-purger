@@ -64,5 +64,6 @@ rm -f "$RESULT_DIRECTORY/composer.json"
 rm -f "$RESULT_DIRECTORY/composer.lock"
 rm -f "$RESULT_DIRECTORY/.gitattributes"
 rm -f "$RESULT_DIRECTORY/.gitignore"
+rm -f "$RESULT_DIRECTORY/.wordpress-org"
 
 note "Finished"
