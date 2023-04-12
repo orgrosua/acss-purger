@@ -45,7 +45,6 @@
     },
     "require": {
         "php": ">=7.4",
-        "rosua/edd-sl-plugin-updater": "@dev",
         "sabberworm/php-css-parser": "^8.4",
         "symfony/finder": "^5.4",
         "symfony/property-access": "^5.4"

@@ -180,12 +180,6 @@ const api = useApi();
 const busy = useBusy();
 const notifier = useNotifier();
 
-const license = ref({
-    key: null,
-    is_activated: false,
-    opt_in_pre_release: false,
-});
-
 const css_cache = ref({
     pending_task: false,
 });

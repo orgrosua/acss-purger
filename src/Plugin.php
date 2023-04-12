@@ -31,12 +31,12 @@ final class Plugin
     /**
      * @var string
      */
-    public const VERSION = '1.0.4';
+    public const VERSION = '1.0.5';
 
     /**
      * @var int
      */
-    public const VERSION_ID = 10004;
+    public const VERSION_ID = 10005;
 
     /**
      * @var int
@@ -51,7 +51,7 @@ final class Plugin
     /**
      * @var int
      */
-    public const RELEASE_VERSION = 4;
+    public const RELEASE_VERSION = 5;
 
     /**
      * @var string
@@ -154,8 +154,6 @@ final class Plugin
         new Runtime();
         new ApiRouter();
 
-        // $this->maybe_update_plugin();
-
         // admin hooks.
         if (is_admin()) {
             add_filter('plugin_action_links_' . plugin_basename(ACSS_PURGER_FILE), fn ($links) => $this->plugin_action_links($links));
@@ -243,29 +241,5 @@ final class Plugin
         ));
 
         return $links;
-    }
-
-    /**
-     * Initialize the plugin updater.
-     */
-    public function maybe_update_plugin()
-    {
-        $license = get_option(ACSS_PURGER_OPTION_NAMESPACE . '_license', [
-            'key' => '',
-            'opt_in_pre_release' => false,
-        ]);
-
-        $this->plugin_updater = new PluginUpdater(
-            ACSS_PURGER_OPTION_NAMESPACE,
-            [
-                'version' => self::VERSION,
-                'license' => $license['key'] ? trim($license['key']) : false,
-                'beta' => $license['opt_in_pre_release'],
-                'plugin_file' => ACSS_PURGER_FILE,
-                'item_id' => ACSS_PURGER_EDD_STORE['item_id'],
-                'store_url' => ACSS_PURGER_EDD_STORE['url'],
-                'author' => ACSS_PURGER_EDD_STORE['author'],
-            ]
-        );
     }
 }
