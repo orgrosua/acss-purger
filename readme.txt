@@ -21,7 +21,7 @@ Up to 90% smaller CSS file size!
 - Join our [Facebook Group](https://www.facebook.com/groups/1142662969627943).
 - Or rate us on [WordPress](https://wordpress.org/support/plugin/acss-purger/reviews/?filter=5/#new-post/) :)
 
-= Credits: 
+= Credits =
 - [Image by brgfx](https://www.freepik.com/free-vector/blue-funnel-sticker-white-background_18935987.htm#query=funnel&position=1&from_view=search&track=sph) on Freepik
 
 == Frequently Asked Questions ==
