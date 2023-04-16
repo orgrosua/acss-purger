@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: automaticcss, automatic css, automatic-css, acss, acsspurger, acss purger, acss-purger
 Requires at least: 6.0
 Tested up to: 6.2
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -57,6 +57,10 @@ Once you save your edit on the Bricks or Oxygen editor, ACSS Purger will run in 
 You can add the classes to the safelist. The safelist is a list of classes that will be excluded from being purged.
 
 == Changelog ==
+
+= 1.0.9 =
+* **New**: You can use asteriks (*) as a wildcard in the safelist
+* **Fix**: Matching engine now more accurate. Missing escaped dot (.) in the regex pattern
 
 = 1.0.8 =
 * **New**: WordPress.org readme and assets update

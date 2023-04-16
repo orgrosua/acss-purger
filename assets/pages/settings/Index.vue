@@ -71,6 +71,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </td>
                         </tr>
 
@@ -88,9 +89,10 @@
                         <tr>
                             <th scope="row"><label>Safelist</label></th>
                             <td>
-                                <VueTagsInput v-model="tag" :tags="safelist" :autocomplete-items="filteredTags" @tags-changed="newTags => safelist = newTags" :placeholder="'Add a classes'" />
+                                <VueTagsInput v-model="tag" :tags="safelist" :autocomplete-items="filteredTags" @tags-changed="newTags => safelist = newTags" :placeholder="'Add a classes. Type to start search'" />
                                 <p class="description"> Add classes name that should be excluded.</p>
-                                <p class="description tw-font-medium">
+                                <p class="description"> (experimental) You can use asteriks (<code>*</code>) as a wildcard</p>
+                                <p class="description tw-font-medium tw-pt-20">
                                     Filter hooks: <span class="tw-font-normal">(programmatically for developers)</span>
                                 </p>
                                 <div>
@@ -111,12 +113,12 @@
         <div>
             <div class="tw-flex tw-flex-col yabe-webfont-banner">
                 <div class="inner-wrap">
-                    <a class="webfont-banner-hero  bg:#fef08a fg:#1d2327 box-shadow:none rt:7 mb:-4" target="_blank" rel="noopener noreferrer" href="https://webfont.yabe.land/?utm_medium=yabe-bricks-plugin&amp;ref=1"> <svg xmlns="http://www.w3.org/2000/svg" class="h:180 w:180" data-name="Layer 1" viewBox="0 0 459 459">
+                    <!-- <a class="webfont-banner-hero  bg:#fef08a fg:#1d2327 box-shadow:none rt:7 mb:-4" target="_blank" rel="noopener noreferrer" href="https://webfont.yabe.land/?utm_medium=yabe-bricks-plugin&amp;ref=1"> <svg xmlns="http://www.w3.org/2000/svg" class="h:180 w:180" data-name="Layer 1" viewBox="0 0 459 459">
                             <path d="M0 0h459v459H0z" style="fill:#fef08a"></path>
                             <path d="M144.9 379.68a6.21 6.21 0 0 1-.57-.49 19.06 19.06 0 0 0-2.8-2 11.73 11.73 0 0 1-1.79-1 60.76 60.76 0 0 0-58.9-39.53 86.13 86.13 0 0 0-11.22 1.53 54.56 54.56 0 0 0-14 5.1l-3.82 2.3a30.65 30.65 0 0 0-2-5.1 52.49 52.49 0 0 0-18.36-21.68 77.52 77.52 0 0 0 38-41.05c0-.26.26-.77.26-1s.25-.51.25-.77a66.1 66.1 0 0 0 3.06-10.2 74.47 74.47 0 0 0 1.28-7.9 74.61 74.61 0 0 0-1.53-24.74 102.43 102.43 0 0 0-4.08-12.49 77.64 77.64 0 0 0-16.07-24 59.74 59.74 0 0 0-5.94-5.66 68.93 68.93 0 0 0-10-6.89 79 79 0 0 0-25.24-9.18c-3.32-.51-6.89-.76-10.2-1 2.8-1 5.61-1.78 8.41-2.55a63.89 63.89 0 0 1 53.6 12.22 22 22 0 0 1 7.14 6.63c1.53 1.79 3.06 3.57 4.34 5.36a46.11 46.11 0 0 1 26 82.62 71.67 71.67 0 0 1 24.22 11 84 84 0 0 1 36.47-19.38 79.36 79.36 0 0 1 49.47 4.34 44.8 44.8 0 0 1 23.2-6.63c23.46.25 42.58 19.38 42.33 42.84v2.29a24.75 24.75 0 0 1 22.7 24.74 19.91 19.91 0 0 1-.77 5.61 76.42 76.42 0 0 1 83.38 58.9c.26 2 .77 4.08 1 6.12a69.75 69.75 0 0 1 39 47.94c.23 1 .44 2 .62 3.06h-6.24a47.52 47.52 0 0 0-4.53-7.91 53 53 0 0 0-45.9-22.69 35.11 35.11 0 0 0-5.1.51 22.1 22.1 0 0 0-19.38-9.95 24.7 24.7 0 0 0-4.34.51 2.92 2.92 0 0 1-.65.2l-.47.1a3 3 0 0 0-.66.2 9.35 9.35 0 0 0-2.81 1c-.51-1.53-1-2.8-1.53-4.08-1-2-2-4.08-3.06-5.86l-2.29-3.83c-7.14-10.2-18.36-18.36-31.62-23.71a92.31 92.31 0 0 0-33.15-6.12h-4.34a92.83 92.83 0 0 0-15 1.78 90.42 90.42 0 0 0-22.44 8.16 63.09 63.09 0 0 0-13.52 9.18c-3.57-.51-7.14-1-11-1.27h-3.83a75.63 75.63 0 0 0-10.71.76l-7.65 1.53a21.62 21.62 0 0 0-3.82 1 60 60 0 0 0-11.73 4.85c0-.51-.26-1.28-.26-1.79a17 17 0 0 0-.51-3.57 30.21 30.21 0 0 0-1.27-4.59 19.6 19.6 0 0 0-1.79-4.08 33.5 33.5 0 0 0-6.88-8.92 5 5 0 0 0-.57-.49l-.39-.29Z" style="fill:#fef08a"></path>
                             <path d="M0 173.91h1.27a65.76 65.76 0 0 1 10.2 1 73.24 73.24 0 0 1 25.25 9.18 68.29 68.29 0 0 1 9.94 6.91 61 61 0 0 1 5.87 5.61 73.31 73.31 0 0 1 16.06 24 71.24 71.24 0 0 1 4.08 12.49 73.55 73.55 0 0 1 1.53 24.74c-.25 2.55-.76 5.35-1.27 7.9a78.54 78.54 0 0 1-3.06 10.2c0 .26-.26.51-.26.77s-.25.76-.25 1c-7.14 17.59-20.4 32.64-38 41.05a52.42 52.42 0 0 1 18.36 21.68 29.81 29.81 0 0 1 2 5.1l3.83-2.3a61.4 61.4 0 0 1 14-5.1 57 57 0 0 1 11.22-1.53 60.79 60.79 0 0 1 58.91 39.53 10.51 10.51 0 0 1 1.78 1 11.32 11.32 0 0 1 2.81 2 6.6 6.6 0 0 1 1.53 1.27 33.39 33.39 0 0 1 6.88 8.93 27.37 27.37 0 0 1 1.79 4.08 30.21 30.21 0 0 1 1.27 4.59c.26 1.27.26 2.29.51 3.57a4.24 4.24 0 0 1 .26 1.78 59.38 59.38 0 0 1 11.73-4.84c1.27-.26 2.55-.77 3.82-1a39.88 39.88 0 0 1 7.65-1.53 70.61 70.61 0 0 1 10.71-.77h3.83a51.2 51.2 0 0 1 11 1.28 83.42 83.42 0 0 1 13.52-9.18 86.54 86.54 0 0 1 22.44-8.16 97.5 97.5 0 0 1 15-1.79h4.34a92.48 92.48 0 0 1 33.15 6.12c13.51 5.36 24.48 13.52 31.62 23.72l2.29 3.82a31.74 31.74 0 0 1 3.06 5.87c.51 1.27 1 2.8 1.54 4.08a12 12 0 0 1 2.8-1 2.55 2.55 0 0 1 .66-.21l.47-.1a3.18 3.18 0 0 0 .66-.2 27.79 27.79 0 0 1 4.33-.51 22.72 22.72 0 0 1 19.38 9.94 35.39 35.39 0 0 1 5.1-.51 52.47 52.47 0 0 1 45.9 22.7 49.63 49.63 0 0 1 4.62 7.9H0V173.91Z" style="fill:#713f12"></path>
-                        </svg> </a>
-                    <div class="webfont-upgrade-details">
+                        </svg> </a> -->
+                    <div class="webfont-upgrade-details tw-pt-5">
                         <h1 class="tw-font-bold">Yabe Webfont</h1>
                         <h3>Custom fonts management and self-host Google Fonts with seamless WordPress page builders integration</h3>
                         <ul class="pro-upgrades">
@@ -128,6 +130,7 @@
                             <li>Variable Fonts</li>
                             <li>Superfast UI</li>
                             <li>Performance in mind</li>
+                            <li>Adobe Fonts support</li>
                         </ul>
                     </div>
                     <div class="webfont-discount block tw-pb-0">
@@ -172,9 +175,6 @@ import { assetPath } from '../../library/assetsHelper.js';
 import birdRiveFile from '../../rive/bird.riv';
 
 const confetti = require('canvas-confetti');
-
-console.log(confetti);
-
 
 const api = useApi();
 const busy = useBusy();

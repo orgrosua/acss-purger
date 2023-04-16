@@ -31,12 +31,12 @@ final class Plugin
     /**
      * @var string
      */
-    public const VERSION = '1.0.8';
+    public const VERSION = '1.0.9';
 
     /**
      * @var int
      */
-    public const VERSION_ID = 10008;
+    public const VERSION_ID = 10009;
 
     /**
      * @var int
@@ -51,7 +51,7 @@ final class Plugin
     /**
      * @var int
      */
-    public const RELEASE_VERSION = 8;
+    public const RELEASE_VERSION = 9;
 
     /**
      * @var string

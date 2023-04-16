@@ -100,9 +100,24 @@ class Cache
 
         $selectors = array_merge($selectors, Config::get('cache.safelist', []));
 
-        $classes = array_diff($classes, $selectors);
+        $classes = array_filter($classes, static function ($class) use ($selectors) {
+            foreach ($selectors as $selector) {
+                if (false !== strpos($selector, '*')) {
+                    if (preg_match(sprintf('/%s/', str_replace('*', '.*', $selector)), $class)) {
+                        return false;
+                    }
 
-        $classes = array_map(static fn ($class) => sprintf('.%s', $class), $classes);
+                } else {
+                    if ($class === $selector) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        });
+
+        $classes = array_map(static fn ($class) => sprintf('\.%s', $class), $classes);
 
         foreach ($finder as $file) {
             $raw = file_get_contents($file->getRealPath());
@@ -188,7 +203,9 @@ class Cache
             $itemSelectors = $mItem->getSelectors();
             foreach ($mSelectors as $mSelector) {
                 foreach ($itemSelectors as $itemSelector) {
-                    if (preg_match(sprintf('#%s(?![a-zA-Z0-9\_\-])#', $mSelector), $itemSelector->getSelector())) {
+                    $pattern = strpos($mSelector, '*') === false ? '#%s(?![a-zA-Z0-9\_\-\,])#' : '#%s#';
+
+                    if (preg_match(sprintf($pattern, $mSelector), $itemSelector->getSelector())) {
                         $mItem->removeSelector($itemSelector);
                     }
                 }
