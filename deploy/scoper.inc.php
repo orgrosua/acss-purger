@@ -93,6 +93,8 @@ return [
         $wp_classes,
         [
             // 'ReflectionClassConstant',
+
+            '_YabeWebfont\YABE_WEBFONT',
         ]
     ),
     'exclude-functions' => array_merge(

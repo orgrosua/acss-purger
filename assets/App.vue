@@ -2,9 +2,8 @@
     <h1 class="wp-heading-inline">{{ __('ACSS Purger', 'acss-purger') }}</h1>
     <div class="acss-purger-top-menu tw-p-2">
         <a href="https://rosua.org" target="_blank">Rosua.org</a> |
-        <a href="https://rosua.org/blog/" target="_blank">{{ __('News', 'acss-purger') }}</a> |
-        <a href="https://l.suabahasa.dev/EyJym" target="_blank">{{ __('Support', 'acss-purger') }}</a> |
-        <a aria-label="more plug-ins" href="https://rosua.org/" target="_blank">More plugins</a> -
+        <a href="https://rosua.org/support-portal" target="_blank">{{ __('Support', 'acss-purger') }}</a> |
+        -
         <span tabindex="0">Version: {{ acssPurger._version }}</span>
     </div>
     <hr class="wp-header-end">

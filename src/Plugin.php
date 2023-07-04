@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Yabe\AcssPurger;
 
-use EDD_SL\PluginUpdater;
 use Exception;
 use Yabe\AcssPurger\Admin\AdminPage;
 use Yabe\AcssPurger\Api\Router as ApiRouter;
@@ -31,12 +30,12 @@ final class Plugin
     /**
      * @var string
      */
-    public const VERSION = '1.0.10';
+    public const VERSION = '1.0.11';
 
     /**
      * @var int
      */
-    public const VERSION_ID = 10010;
+    public const VERSION_ID = 10011;
 
     /**
      * @var int
@@ -51,19 +50,12 @@ final class Plugin
     /**
      * @var int
      */
-    public const RELEASE_VERSION = 10;
+    public const RELEASE_VERSION = 11;
 
     /**
      * @var string
      */
     public const EXTRA_VERSION = '';
-
-    /**
-     * Easy Digital Downloads Software Licensing integration wrapper.
-     *
-     * @var PluginUpdater
-     */
-    public $plugin_updater;
 
     /**
      * Stores the instance, implementing a Singleton pattern.

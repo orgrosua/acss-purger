@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Yabe\AcssPurger\Admin;
 
 use Yabe\AcssPurger\Plugin;
+use Yabe\AcssPurger\Utils\Common;
 
 class AdminPage
 {
@@ -34,6 +35,31 @@ class AdminPage
         $hook = add_submenu_page('automatic-css', __('ACSS Purger', 'acss-purger'), __('ACSS Purger', 'acss-purger'), 'manage_options', ACSS_PURGER_OPTION_NAMESPACE, fn () => $this->render());
 
         add_action('load-' . $hook, fn () => $this->init_hooks());
+
+        if (!class_exists('\_YabeWebfont\YABE_WEBFONT')) {
+            if (get_template() === 'bricks') {
+                add_submenu_page(
+                    'bricks',
+                    __('Self-host Google Fonts', 'acss-purger'),
+                    __('Self-host Google Fonts', 'acss-purger'),
+                    'manage_options',
+                    'acss-purger-yabe-webfont-redirect',
+                    static fn () => Common::redirect(admin_url('plugin-install.php?s=Rosua&tab=search&type=author')),
+                    4
+                );
+            }
+
+            if (defined('CT_PLUGIN_MAIN_FILE')) {
+                add_submenu_page(
+                    'ct_dashboard_page',
+                    __('Self-host Google Fonts', 'acss-purger'),
+                    __('Self-host Google Fonts', 'acss-purger'),
+                    'manage_options',
+                    'acss-purger-yabe-webfont-redirect',
+                    static fn () => Common::redirect(admin_url('plugin-install.php?s=Rosua&tab=search&type=author'))
+                );
+            }
+        }
     }
 
     private function render()
