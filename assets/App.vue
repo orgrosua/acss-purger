@@ -3,6 +3,7 @@
     <div class="acss-purger-top-menu tw-p-2">
         <a href="https://rosua.org" target="_blank">Rosua.org</a> |
         <a href="https://rosua.org/support-portal" target="_blank">{{ __('Support', 'acss-purger') }}</a> |
+        <a href="https://yabe.land" target="_blank">{{ __('More plugins', 'acss-purger') }}</a> |
         -
         <span tabindex="0">Version: {{ acssPurger._version }}</span>
     </div>

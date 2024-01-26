@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Yabe\AcssPurger\Core;
 
 use Automatic_CSS\Model\Config\Classes;
+use Automatic_CSS\Plugin as ACSSPlugin;
 use Sabberworm\CSS\CSSList\CSSList;
 use Sabberworm\CSS\CSSList\Document;
 use Sabberworm\CSS\Parser;
@@ -87,12 +88,12 @@ class Cache
     {
         $acss_plugin_info = get_plugin_data(ACSS_PLUGIN_FILE);
 
-        if (! file_exists(ACSS_DYNAMIC_CSS_DIR)) {
+        if (! file_exists(ACSSPlugin::get_dynamic_css_dir())) {
             return;
         }
 
         $finder = new Finder();
-        $finder->files()->in(ACSS_DYNAMIC_CSS_DIR)->name('*.css');
+        $finder->files()->in(ACSSPlugin::get_dynamic_css_dir())->name('*.css');
 
         $classes = (new Classes())->load();
 

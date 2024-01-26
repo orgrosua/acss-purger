@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Yabe\AcssPurger\Api\Setting;
 
+use Automatic_CSS\Plugin as ACSSPlugin;
 use Symfony\Component\Finder\Finder;
 use WP_REST_Request;
 use WP_REST_Response;
@@ -67,16 +68,16 @@ class Cache extends AbstractApi implements ApiInterface
             'purged' => [],
         ];
 
-        if (file_exists(ACSS_DYNAMIC_CSS_DIR)) {
+        if (file_exists(ACSSPlugin::get_dynamic_css_dir())) {
             $finder = new Finder();
-            $finder->files()->in(ACSS_DYNAMIC_CSS_DIR)->name('*.css');
+            $finder->files()->in(ACSSPlugin::get_dynamic_css_dir())->name('*.css');
 
             foreach ($finder as $f) {
                 $files['original'][] = [
                     'name' => $f->getFilename(),
                     'size' => $f->getSize(),
                     'last_modified' => $f->getMTime(),
-                    'file_url' => ACSS_DYNAMIC_CSS_URL . '/' . $f->getFilename(),
+                    'file_url' => ACSSPlugin::get_dynamic_css_url() . '/' . $f->getFilename(),
                 ];
             }
         }
