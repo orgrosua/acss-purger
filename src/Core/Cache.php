@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Yabe\AcssPurger\Core;
 
-use Automatic_CSS\Model\Config\Classes;
+use Automatic_CSS\Model\Config\Framework as AcssFramework;
 use Automatic_CSS\Plugin as ACSSPlugin;
 use Sabberworm\CSS\CSSList\CSSList;
 use Sabberworm\CSS\CSSList\Document;
@@ -95,7 +95,7 @@ class Cache
         $finder = new Finder();
         $finder->files()->in(ACSSPlugin::get_dynamic_css_dir())->name('*.css');
 
-        $classes = (new Classes())->load();
+        $classes = (new AcssFramework())->get_classes();
 
         $selectors = apply_filters('f!yabe/acsspurger/core/cache:selectors', []);
 

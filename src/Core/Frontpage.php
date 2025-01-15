@@ -25,26 +25,20 @@ final class Frontpage
 {
     public function __construct()
     {
-        add_action('wp_enqueue_scripts', fn () => $this->enqueue_css_cache(), 1_000_001);
+        add_filter('style_loader_src', fn ($src, $handle) => $this->filter_style_loader_src($src, $handle), 1_000_001, 2);
     }
 
-    public function enqueue_css_cache()
+    public function filter_style_loader_src($src, $handle)
     {
-        global $wp_styles;
-
         // only serve the original css file to admin
         if (current_user_can('manage_options')) {
-            return;
+            return $src;
         }
 
         $is_inside_editor = apply_filters('f!yabe/acsspurger/core/runtime:is_inside_editor', false);
 
         if ($is_inside_editor) {
-            return;
-        }
-
-        if (! file_exists(CoreCache::get_cache_path())) {
-            return;
+            return $src;
         }
 
         $finder = new Finder();
@@ -52,18 +46,16 @@ final class Frontpage
 
         $cache_files = iterator_to_array($finder);
 
-        array_walk($wp_styles->registered, static function ($style) use ($cache_files) {
-            if (strpos($style->handle, 'automaticcss') !== false) {
-                $file_name = pathinfo($style->src, PATHINFO_BASENAME);
+        if (strpos($handle, 'automaticcss') !== false) {
+            $file_name = pathinfo(parse_url($src, PHP_URL_PATH), PATHINFO_BASENAME);
+            $filtered_cache_file = array_filter($cache_files, static fn ($file) => $file->getFilename() === $file_name);
 
-                $filtered_cache_file = array_filter($cache_files, static fn ($file) => $file->getFilename() === $file_name);
-
-                if ($filtered_cache_file !== []) {
-                    $cache_file = array_shift($filtered_cache_file);
-                    $style->src = CoreCache::get_cache_url($cache_file->getFilename());
-                    $style->ver = $cache_file->getMTime();
-                }
+            if ($filtered_cache_file !== []) {
+                $cache_file = array_shift($filtered_cache_file);
+                return CoreCache::get_cache_url($cache_file->getFilename());
             }
-        });
+        }
+
+        return $src;
     }
 }
