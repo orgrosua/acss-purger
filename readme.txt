@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: automaticcss, automatic css, automatic-css, acss, acsspurger, acss purger, acss-purger
 Requires at least: 6.0
 Tested up to: 6.7
-Stable tag: 1.0.15
+Stable tag: 1.0.16
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -58,7 +58,7 @@ You can add the classes to the safelist. The safelist is a list of classes that 
 
 == Changelog ==
 
-= 1.0.15 =
+= 1.0.16 =
 * **Improve**: Update compability to Automatic.css 3.2.10
 
 = 1.0.14 =
