@@ -16,7 +16,7 @@ env:
 jobs:
   build_scoped_orgrosua:
     # Don't run on forks.
-    if: github.repository == 'orgrosua/acss-purger-src'
+    if: github.repository == 'orgrosua/acss-purger'
 
     runs-on: ubuntu-latest
     timeout-minutes: 30
