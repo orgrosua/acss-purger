@@ -41,6 +41,10 @@ final class Frontpage
             return $src;
         }
 
+        if (! file_exists(CoreCache::get_cache_path())) {
+            return $src;
+        }
+
         $finder = new Finder();
         $finder->files()->in(CoreCache::get_cache_path())->name('*.css');
 
